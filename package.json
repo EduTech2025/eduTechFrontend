@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "framer-motion": "^12.10.1",
+    "lucide-react": "^0.508.0",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -17,5 +19,18 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.5"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "tailwind.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EduTech2025/eduTechFrontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EduTech2025/eduTechFrontend/issues"
+  },
+  "homepage": "https://github.com/EduTech2025/eduTechFrontend#readme"
 }
