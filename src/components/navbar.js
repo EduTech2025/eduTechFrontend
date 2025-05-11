@@ -13,6 +13,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
+    { name: 'Login', path: '/login' },
     { name: 'Services', hasDropdown: true },
     { name: 'Contact', path: '/contact' },
   ];
@@ -28,7 +29,7 @@ export default function Navbar() {
   const isActive = (path) => pathname === path || (path === '/services' && pathname.startsWith('/services'));
 
   return (
-    <nav className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
+    <nav className="bg-transparent text-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-white hover:text-blue-400 transition">
