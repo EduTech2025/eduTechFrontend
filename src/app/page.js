@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '../../public/assets/DeSilentOrder_DarkLogo.png';
+import logo from '../../public/assets/DeSilentOrder_DarkLogo_new.png';
 import { BookOpen, Code2, MonitorSmartphone, Rocket } from 'lucide-react';
 
 const team = [
