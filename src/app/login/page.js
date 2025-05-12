@@ -4,20 +4,43 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { AnimatePresence } from 'framer-motion';
+import Toast from '@/utils/toast';
+import auth from '@/lib/auth_api'
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
-
+  const [toast, setToast] = useState(null);
+ 
   const handleGoogleLogin = () => {
     // TODO: Replace with actual Google login integration
     console.log('Google login clicked');
   };
 
+   const handleShowToast = (type) => {
+    setToast({ type, message: type === 'success' ? 'Data saved successfully!' : 'Failed to save data!' });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    auth.login(form).then((response) => {
+      if (response.status == 200) {
+        console.log(response.data)
+        localStorage.setItem('auth-token',response.data.token);
+        handleShowToast('success');
+      } else {
+        console.log(response.data)
+        handleShowToast('error');
+      }
+    });
+    console.log(form);
+  }
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-black px-4">
       <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl">
         <h1 className="text-3xl font-bold text-black mb-6 text-center">Login</h1>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-semibold text-black mb-1">Email</label>
             <input
@@ -62,6 +85,15 @@ export default function LoginPage() {
           <Link href="/signup" className="underline hover:text-gray-600">Sign up</Link>
         </p>
       </div>
+       <AnimatePresence>
+        {toast && (
+          <Toast
+            type={toast.type}
+            message={toast.message}
+            onClose={() => setToast(null)}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }

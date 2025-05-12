@@ -1,14 +1,19 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, User } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext'
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const pathname = usePathname();
+
+const { email, isAuthenticated, logout } = useAuth();
+
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -53,9 +58,8 @@ export default function Navbar() {
             item.hasDropdown ? (
               <div key={item.name} className="relative group">
                 <button
-                  className={`flex items-center text-base font-medium transition ${
-                    isActive('/services') ? 'text-red-500' : 'hover:text-blue-400'
-                  }`}
+                  className={`flex items-center text-base font-medium transition ${isActive('/services') ? 'text-red-500' : 'hover:text-blue-400'
+                    }`}
                 >
                   {item.name}
                   <ChevronDown size={18} className="ml-1" />
@@ -66,9 +70,8 @@ export default function Navbar() {
                     <Link
                       key={service.name}
                       href={service.path}
-                      className={`block px-4 py-2 hover:bg-gray-100 ${
-                        pathname === service.path ? 'text-red-500 font-medium' : ''
-                      }`}
+                      className={`block px-4 py-2 hover:bg-gray-100 ${pathname === service.path ? 'text-red-500 font-medium' : ''
+                        }`}
                     >
                       {service.name}
                     </Link>
@@ -76,15 +79,21 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link
-                key={item.name}
-                href={item.path}
-                className={`text-base font-medium transition duration-200 ${
-                  isActive(item.path) ? 'text-red-500' : 'hover:text-blue-400'
-                }`}
-              >
-                {item.name}
-              </Link>
+              (isAuthenticated && item.name === 'Login') ?
+                <Link
+                  href="/profile" // or your desired route
+                  className="flex items-center gap-2 text-base font-medium transition duration-200 hover:text-blue-400"
+                >
+                  <User className="w-5 h-5" />
+                  {email}
+                </Link> : <Link
+                  key={item.name}
+                  href={item.path}
+                  className={`text-base font-medium transition duration-200 ${isActive(item.path) ? 'text-red-500' : 'hover:text-blue-400'
+                    }`}
+                >
+                  {item.name}
+                </Link>
             )
           )}
         </div>
@@ -98,9 +107,8 @@ export default function Navbar() {
               <div key={item.name}>
                 <button
                   onClick={() => setServicesOpen(!servicesOpen)}
-                  className={`w-full flex items-center justify-between text-base font-medium ${
-                    isActive('/services') ? 'text-red-500' : 'text-white hover:text-blue-300'
-                  }`}
+                  className={`w-full flex items-center justify-between text-base font-medium ${isActive('/services') ? 'text-red-500' : 'text-white hover:text-blue-300'
+                    }`}
                 >
                   {item.name}
                   <ChevronDown size={18} className={`transform transition ${servicesOpen ? 'rotate-180' : ''}`} />
@@ -111,9 +119,8 @@ export default function Navbar() {
                       <Link
                         key={service.name}
                         href={service.path}
-                        className={`block text-sm ${
-                          pathname === service.path ? 'text-red-500 font-medium' : 'text-white hover:text-blue-300'
-                        }`}
+                        className={`block text-sm ${pathname === service.path ? 'text-red-500 font-medium' : 'text-white hover:text-blue-300'
+                          }`}
                         onClick={() => setIsOpen(false)}
                       >
                         {service.name}
@@ -126,9 +133,8 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.path}
-                className={`block text-base font-medium ${
-                  isActive(item.path) ? 'text-red-500' : 'text-white hover:text-blue-300'
-                }`}
+                className={`block text-base font-medium ${isActive(item.path) ? 'text-red-500' : 'text-white hover:text-blue-300'
+                  }`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
