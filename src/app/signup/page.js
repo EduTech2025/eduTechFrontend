@@ -6,7 +6,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { AnimatePresence } from 'framer-motion';
 import Toast from '@/utils/toast';
 import auth from '@/lib/auth_api';
-
+import { signInWithPopup } from "firebase/auth";
+import { auth as firebaseAuth, provider } from '@/lib/firebase';
 
 export default function SignUpPage() {
   const [toast, setToast] = useState(null);
@@ -29,8 +30,44 @@ export default function SignUpPage() {
     grade: ''
   });
 
-  const handleGoogleSignUp = () => {
-    console.log('Google sign up clicked');
+  const handleGoogleSignUp = async () => {
+    try {
+      const result = await signInWithPopup(firebaseAuth, provider);
+      const user = result.user;
+
+      // Optional: Send the user info to your backend
+      console.log("Google user:", user);
+      let form = {
+        full_name: user.displayName,
+        email: user.email,
+        password: user.uid,
+        gender: 'M',
+        date_of_birth: '2000-01-01',
+        is_school: false,
+        college_year: '',
+        university_name: '',
+        school_name: '',
+        grade: ''
+      }
+      auth.signup(form).then((response) => {
+        if (response.status == 201) {
+          console.log(response.data)
+          setToast({
+            type: "success",
+            message: `Welcome, ${user.displayName || "user"}!`
+          });;
+        } else {
+          console.log(response.data)
+          handleShowToast('error');
+        }
+      });
+      // Example: Show toast
+
+
+    } catch (error) {
+      console.error("Google sign-in error:", error);
+      setToast({ type: "error", message: "Google sign-in failed." });
+    }
   };
 
   const handleSubmit = (e) => {
