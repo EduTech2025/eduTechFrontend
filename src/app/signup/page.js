@@ -7,6 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import Toast from '@/utils/toast';
 import auth from '@/lib/auth_api';
 import { signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth as firebaseAuth, provider } from '@/lib/firebase';
 
 export default function SignUpPage() {
@@ -17,6 +18,7 @@ export default function SignUpPage() {
   };
 
   const [page, setPage] = useState(1);
+  const [isGoogle, setIsGoogle] = useState(false);
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -32,37 +34,28 @@ export default function SignUpPage() {
 
   const handleGoogleSignUp = async () => {
     try {
+        if (window.popupInProgress) return;
+        window.popupInProgress = true;
+    
       const result = await signInWithPopup(firebaseAuth, provider);
       const user = result.user;
 
       // Optional: Send the user info to your backend
       console.log("Google user:", user);
-      let form = {
+      setForm( {
         full_name: user.displayName,
         email: user.email,
         password: user.uid,
-        gender: 'M',
-        date_of_birth: '2000-01-01',
+        gender: '',
+        date_of_birth: '',
         is_school: false,
         college_year: '',
         university_name: '',
         school_name: '',
         grade: ''
-      }
-      auth.signup(form).then((response) => {
-        if (response.status == 201) {
-          console.log(response.data)
-          setToast({
-            type: "success",
-            message: `Welcome, ${user.displayName || "user"}!`
-          });;
-        } else {
-          console.log(response.data)
-          handleShowToast('error');
-        }
-      });
-      // Example: Show toast
-
+      })
+      setIsGoogle(true);
+      setPage(2);
 
     } catch (error) {
       console.error("Google sign-in error:", error);
@@ -70,12 +63,38 @@ export default function SignUpPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    auth.signup(form).then((response) => {
+    if(isGoogle){
+     setForm((prev) => ({
+      ...prev,
+      is_school: form.is_school === true ? true : false,
+      college_year: form.is_school === true ? '' : form.college_year,
+      university_name: form.is_school === true ? '' : form.university_name,
+      school_name: form.is_school === true ? form.school_name : '',
+      grade: form.is_school === true ? form.grade : '',
+      date_of_birth: form.date_of_birth,
+      gender: form.gender
+    }));
+  }else{
+    const userCredential = await createUserWithEmailAndPassword(
+      firebaseAuth,
+      form.email,
+      form.password
+    );
+    console.log(userCredential.email)
+    console.log(userCredential.user.uid)
+    form.password=userCredential.user.uid;
+      console.log(form)
+  }
+  console.log(form)
+  await auth.signup(form).then((response) => {
       if (response.status == 201) {
         console.log(response.data)
-        handleShowToast('success');
+       setToast({
+            type: "success",
+            message: `Welcome, ${form.full_name || "user"}!`
+          });;
       } else {
         console.log(response.data)
         handleShowToast('error');
@@ -89,7 +108,7 @@ export default function SignUpPage() {
       <div className={`w-full ${page === 2 ? 'max-w-4xl' : 'max-w-md'} p-8 bg-white rounded-2xl shadow-xl transition-all duration-300`}>
         <h1 className="text-3xl font-bold text-black mb-6 text-center">Sign Up</h1>
 
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form  className="space-y-6" onSubmit={handleSubmit}>
           {page === 1 && (
             <>
               <div>
@@ -267,6 +286,7 @@ export default function SignUpPage() {
 
         <div className="mt-6">
           <button
+            id="google_sign_up"
             onClick={handleGoogleSignUp}
             className="w-full py-2 px-4 flex items-center justify-center gap-2 border border-black text-black bg-white rounded-lg hover:bg-black hover:text-white transition duration-300"
           >
