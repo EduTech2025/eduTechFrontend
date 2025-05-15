@@ -8,33 +8,78 @@ import { AnimatePresence } from 'framer-motion';
 import Toast from '@/utils/toast';
 import auth from '@/lib/auth_api'
 
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth as firebaseAuth, provider } from "@/lib/firebase";
+
 export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [toast, setToast] = useState(null);
- 
-  const handleGoogleLogin = () => {
-    // TODO: Replace with actual Google login integration
-    console.log('Google login clicked');
-  };
 
-   const handleShowToast = (type) => {
-    setToast({ type, message: type === 'success' ? 'Data saved successfully!' : 'Failed to save data!' });
-  };
-
-  const handleSubmit = async (e) => {
+const handleGoogleLogin = async (e) => {
+  try {
     e.preventDefault();
-    auth.login(form).then((response) => {
+    if (window.popupInProgress) return;
+    window.popupInProgress = true;
+    
+    const result = await signInWithPopup(firebaseAuth, provider);
+    const email = result.user.email;
+    const password = result.user.uid;
+    const loginData = { email, password };
+
+    console.log(loginData); 
+
+    await auth.login(loginData).then((response) => {
       if (response.status == 200) {
-        console.log(response.data)
-        localStorage.setItem('auth-token',response.data.token);
+        console.log(response.data);
+        localStorage.setItem('auth-token', response.data.token);
         handleShowToast('success');
       } else {
-        console.log(response.data)
+        console.log(response.data);
         handleShowToast('error');
       }
     });
-    console.log(form);
+  } catch (err) {
+    console.error("Google login failed", err);
+    alert(err.message);
   }
+};
+
+
+  const handleShowToast = (type) => {
+    setToast({ type, message: type === 'success' ? 'Data saved successfully!' : 'Failed to save data!' });
+  };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const userCred = await signInWithEmailAndPassword(firebaseAuth, form.email, form.password);
+    const user = userCred.user;
+
+    // Use updated credentials directly
+    const loginData = {
+      email: user.email,
+      password: user.uid,
+    };
+
+    console.log("Login data being sent:", loginData);
+
+    const response = await auth.login(loginData);
+
+    if (response.status === 200) {
+      console.log(response.data);
+      localStorage.setItem('auth-token', response.data.token);
+      handleShowToast('success');
+    } else {
+      console.log(response.data);
+      handleShowToast('error');
+    }
+  } catch (error) {
+    console.error("Firebase email/password login failed:", error);
+    handleShowToast('error');
+  }
+};
+
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-black px-4">
@@ -85,7 +130,7 @@ export default function LoginPage() {
           <Link href="/signup" className="underline hover:text-gray-600">Sign up</Link>
         </p>
       </div>
-       <AnimatePresence>
+      <AnimatePresence>
         {toast && (
           <Toast
             type={toast.type}
