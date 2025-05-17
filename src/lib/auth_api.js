@@ -1,14 +1,17 @@
+import api from "./base_url";
 
-import axios from 'axios';
 
-const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/',
-});
+const endPoints = {
+  signup:"api/signup/",
+  login:"api/login/",
+  get_user:"api/user/",
+}
+
 
 const auth = {
   signup: async function (data) {
     try {
-      const response = await api.post('api/signup/', data, {
+      const response = await api.post(endPoints.signup, data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -21,7 +24,7 @@ const auth = {
   },
   login: async function (data) {
     try {
-      const response = await api.post('api/login/', data, {
+      const response = await api.post(endPoints.login, data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -34,7 +37,7 @@ const auth = {
   },
   get_user: async function (token) {
     try {
-      const response = await api.get('api/user/', {
+      const response = await api.get(endPoints.get_user, {
         headers: {
           'Authorization': `Token ${token}`,
           'Content-Type': 'application/json',

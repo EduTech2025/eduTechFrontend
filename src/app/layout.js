@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import Navbar from '../components/navbar';
 import Footer from '@/components/footer';
 import { AuthProvider } from '@/context/AuthContext';
+import ClientRoot from './clientroot/ClientRoot'; // the client wrapper
 
 export const metadata = {
   title: 'My Site',
@@ -11,16 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <AuthProvider> 
-          <body>
-            <Navbar />
-            <main className="p-4">{children}</main>
-            <Footer />
-          </body>
-      </AuthProvider>
+      <body >
+        <AuthProvider>
+          <ClientRoot>{children}</ClientRoot>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
-
-// ssh -R 80:localhost:3000 serveo.net
-// git config --global user.name Himanshu-Deve
