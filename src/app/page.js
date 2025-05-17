@@ -29,14 +29,14 @@ const team = [
 
 export default function Home() {
   return (
-    <main className="bg-white text-gray-800">
+    <main className="bg-white text-gray-800 overflow-x-hidden">
       <section className="min-h-screen bg-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-80 z-0">
         <Image
             src={logo}
             alt="Background"
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             className="opacity-80 z-0"
           />
         </div>
