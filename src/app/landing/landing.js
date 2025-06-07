@@ -22,7 +22,7 @@ export default function LandingOverlay({ onLaunch }) {
           <span className="z-10 relative">Start to Launch</span>
           {/* Glow effect */}
           <span className="absolute inset-0 bg-white opacity-10 rounded-full blur-xl scale-150 group-hover:opacity-20 transition duration-500" />
-        </motion.button>
+        </motion.button> 
 
         {/* Optional: Flicker / pulse animation */}
         <style jsx>{`
