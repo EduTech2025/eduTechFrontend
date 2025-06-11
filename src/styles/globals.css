@@ -66,7 +66,3 @@ body {
 .group:hover .card-3d {
   transform: rotateY(10deg) rotateX(5deg);
 }
-
-Link{
-  font-family: 'Anta-Regular';
-}
