@@ -17,8 +17,10 @@ export default function Navbar({ animate }) {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Product', path: '/products' },
+
+//     { name: 'About', path: '/about' },
     // { name: 'Blog', path: '/blogs/user' },
+    { name: 'Product', path: '/products' },
     { name: 'Services', hasDropdown: true },
     { name: 'Contact', path: '/contact' },
   ];
