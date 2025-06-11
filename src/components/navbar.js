@@ -17,9 +17,10 @@ export default function Navbar({ animate }) {
 
   const navItems = [
     { name: 'Home', path: '/' },
+
     { name: 'About', path: '/about' },
-    { name: 'Blogs', path: '/blogs' },
     // { name: 'Blog', path: '/blogs/user' },
+    { name: 'Product', path: '/products' },
     { name: 'Services', hasDropdown: true },
     { name: 'Contact', path: '/contact' },
   ];
@@ -81,7 +82,7 @@ export default function Navbar({ animate }) {
             <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
               {navItems.map((item) =>
                 item.hasDropdown ? (
-                  <div key={item.name} className="relative group">
+                  <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className="relative group">
                     <button
                       className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white hover:text-black hover:bg-white'
                         }`}
@@ -106,6 +107,7 @@ export default function Navbar({ animate }) {
                   <Link
                     key={item.name}
                     href={item.path}
+                    style={{ fontFamily: 'Anta-Regular' }}
                     onClick={() => setIsOpen(false)}
                     className={`block text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive(item.path) ? 'bg-white text-black' : 'text-white hover:text-black hover:bg-white'
                       }`}
