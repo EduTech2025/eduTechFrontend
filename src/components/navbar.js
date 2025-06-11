@@ -18,7 +18,7 @@ export default function Navbar({ animate }) {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Product', path: '/products' },
-    { name: 'Blog', path: '/blogs/user' },
+    // { name: 'Blog', path: '/blogs/user' },
     { name: 'Services', hasDropdown: true },
     { name: 'Contact', path: '/contact' },
   ];
@@ -76,7 +76,7 @@ export default function Navbar({ animate }) {
               <Link href="/">De Silent Order</Link>
             </div>
 
-            {/* Center: Menu - hidden on mobile */}
+            {/* Center: Menu - hidden on mobile
             <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
               {navItems.map((item) =>
                 item.hasDropdown ? (
@@ -109,6 +109,41 @@ export default function Navbar({ animate }) {
                     onClick={() => setIsOpen(false)}
                     className={`block text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive(item.path) ? 'bg-white text-black' : 'text-white hover:text-black hover:bg-white'
                       }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              )}
+            </div> */}
+             <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
+              {navItems.map((item) =>
+                item.hasDropdown ? (
+                  <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className="relative group">
+                    <button
+                      className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white  hover:bg-white/10'}`}
+                    >
+                      {item.name}
+                      <ChevronDown size={18} className="ml-1" />
+                    </button>
+                    <div className="absolute left-0 mt-2 w-56 bg-white/10 text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
+                      {serviceItems.map((service) => (
+                        <Link
+                          key={service.name}
+                          href={service.path}
+                          className={`block px-4 py-2 hover:bg-white/20 rounded-md transition duration-200 ${pathname === service.path ? 'text-black bg-white' : 'text-white'}`}
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.path}
+                    style={{ fontFamily: 'Anta-Regular' }}
+                    onClick={() => setIsOpen(false)}
+                    className={`block text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive(item.path) ? 'bg-white text-black' : 'text-white hover:bg-white/10 '}`}
                   >
                     {item.name}
                   </Link>
