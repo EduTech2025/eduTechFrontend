@@ -46,10 +46,11 @@ export default function Home() {
       <section className="min-h-screen bg-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-80 z-0">
           <Image
-            src='/assets/DeSilentOrder_DarkLogo_new.png'
+              src="/assets/DeSilentOrder_DarkLogo_new.png"
+  fill
+  style={{ objectFit: "contain" }}
             alt="Background"
-            layout="fill"
-            objectFit="contain"
+          
             className="opacity-80 z-0"
           />
         </div>
