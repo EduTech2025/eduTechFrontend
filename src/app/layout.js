@@ -1,6 +1,4 @@
 import '@/styles/globals.css';
-import Navbar from '../components/navbar';
-import Footer from '@/components/footer';
 import { AuthProvider } from '@/context/AuthContext';
 import ClientRoot from './clientroot/ClientRoot'; // the client wrapper
 
