@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm install --platform=linux --arch=x64 && next build",
-    "start": "next start"
+     "start": "next start -p $PORT"
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.0.0",
