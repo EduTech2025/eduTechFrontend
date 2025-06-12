@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import TestimonialScroller from '@/components/testimonial';
 
 import GlassyProfileCard from '@/utils/glassy_profile_card';
 
@@ -47,8 +48,8 @@ export default function Home() {
         <div className="absolute inset-0 opacity-80 z-0">
           <Image
               src="/assets/DeSilentOrder_DarkLogo_new.png"
-  fill
-  style={{ objectFit: "contain" }}
+              fill
+              style={{ objectFit: "contain" }}
             alt="Background"
           
             className="opacity-80 z-0"
@@ -83,7 +84,7 @@ export default function Home() {
       
 
       {/* Team Section */}
-      <section className="py-20 px-6 bg-black">
+      <section className="pt-10 px-6 bg-black">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl text-white font-bold mb-12">Meet the Team</h2>
           <div className='flex justify-center items-center'>
@@ -104,6 +105,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <TestimonialScroller />
 
     </main>
   );
