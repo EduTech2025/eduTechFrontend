@@ -16,24 +16,11 @@ export default function AboutPage() {
   );
 }
 
-// export default function AboutPage() {
-//     return (
-//       <div>
-//         <h1>About Page</h1>
-//         <p>This is the about page.</p>
-//       </div>
-//     );
-//   }
+      <div>
+        <h1>About Page</h1>
+        <p>This is the about page.</p>
+      </div>
+      
+    );
+  }
   
-
-// import Spline from '@splinetool/react-spline/next';
-
-// export default function Home() {
-//   return (
-//     <main>
-//       <Spline
-//         scene="https://prod.spline.design/8QSDgExb5l1n1q0F/scene.splinecode" 
-//       />
-//     </main>
-//   );
-// }

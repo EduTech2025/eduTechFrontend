@@ -33,7 +33,7 @@ export default function ClientRoot({ children }) {
 
   return (
     <>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {!launched && <LandingOverlay onLaunch={handleLaunch} />}
       </AnimatePresence>
 
@@ -48,7 +48,11 @@ export default function ClientRoot({ children }) {
           <main className="pt-16">{children}</main>
           <Footer />
         </motion.div>
-      )}
+      )} */}
+      <Navbar/>
+          <main className="pt-16">{children}</main>
+          <Footer />
+      
     </>
   );
 }

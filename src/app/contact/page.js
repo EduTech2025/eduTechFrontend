@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Mail, User, BookOpenText, MessageSquareText } from 'lucide-react';
 import Toast from '@/utils/toast';
 import contactApi from '@/lib/contact_api';
 
@@ -17,6 +18,7 @@ export default function ContactUsPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+
     try {
       const response = await contactApi.contact_email(form);
       if (response.status === 200) {
@@ -25,7 +27,7 @@ export default function ContactUsPage() {
       } else {
         setToast({ type: 'error', message: 'Failed to send message. Please try again.' });
       }
-    } catch {
+    } catch (err) {
       setToast({ type: 'error', message: 'Something went wrong. Try again later.' });
     } finally {
       setSubmitting(false);
@@ -33,69 +35,89 @@ export default function ContactUsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-6 py-16 relative overflow-hidden">
-      {/* Glassmorphic Card with Neon Glow */}
+    <div className="min-h-screen bg-black flex items-center justify-center px-4 py-12">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 max-w-lg w-full p-10 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_0_30px_4px_#F0F8FF]"
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-xl rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg p-8"
       >
-        <h2 className="text-3xl font-bold text-[#F0F8FF] text-center mb-2 tracking-wide">
-          Contact Us
-        </h2>
-        <p className="text-sm text-[#F0F8FF]/80 text-center mb-6">
-          Share your ideas, feedback, or collaboration proposals.
-        </p>
+        <h2 className="text-3xl font-bold text-white mb-6 text-center">Contact Us</h2>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          {['name', 'email', 'subject'].map((field) => (
-            <div key={field}>
-              <input
-                type={field === 'email' ? 'email' : 'text'}
-                name={field}
-                placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                value={form[field]}
-                onChange={handleChange}
-                required
-                className="w-full rounded-lg bg-white/5 border border-white/20 px-4 py-3 text-sm text-white placeholder-[#F0F8FF]/40 focus:outline-none focus:ring-2 focus:ring-[#F0F8FF] transition"
-              />
-            </div>
-          ))}
-          <div>
-            <textarea
-              name="message"
-              rows={4}
-              placeholder="Your message..."
-              value={form.message}
+          {/* Name */}
+          <div className="relative">
+            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
+            <input
+              type="text"
+              name="name"
+              value={form.name}
               onChange={handleChange}
+              placeholder="Your Name"
               required
-              className="w-full rounded-lg bg-white/5 border border-white/20 px-4 py-3 text-sm text-white placeholder-[#F0F8FF]/40 focus:outline-none focus:ring-2 focus:ring-[#F0F8FF] resize-none transition"
+              className="pl-10 pr-3 w-full bg-black/30 text-white border border-white/20 rounded-md py-2 text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
             />
           </div>
-          <button
+
+          {/* Email */}
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="you@example.com"
+              required
+              className="pl-10 pr-3 w-full bg-black/30 text-white border border-white/20 rounded-md py-2 text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Subject */}
+          <div className="relative">
+            <BookOpenText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
+            <input
+              type="text"
+              name="subject"
+              value={form.subject}
+              onChange={handleChange}
+              placeholder="Subject"
+              required
+              className="pl-10 pr-3 w-full bg-black/30 text-white border border-white/20 rounded-md py-2 text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Message */}
+          <div className="relative">
+            <MessageSquareText className="absolute left-3 top-4 h-5 w-5 text-white/60" />
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="Type your message..."
+              required
+              rows={4}
+              className="pl-10 pr-3 pt-2 w-full bg-black/30 text-white border border-white/20 rounded-md text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             type="submit"
             disabled={submitting}
-            className={`w-full py-3 rounded-lg font-medium text-black transition ${
+            className={`w-full py-2 rounded-lg text-white text-sm font-semibold transition ${
               submitting
-                ? 'bg-[#F0F8FF]/50 cursor-not-allowed'
-                : 'bg-[#F0F8FF] hover:bg-[#eaf6ff]'
+                ? 'bg-indigo-300 cursor-not-allowed'
+                : 'bg-indigo-600 hover:bg-indigo-700'
             }`}
           >
             {submitting ? 'Sending...' : 'Send Message'}
-          </button>
+          </motion.button>
         </form>
-
-        <p className="mt-6 text-center text-xs text-[#F0F8FF]/70">
-          Prefer email?{' '}
-          <a href="mailto:desilentorder@gmail.com" className="underline hover:text-[#F0F8FF]">
-            desilentorder@gmail.com
-          </a>
-        </p>
       </motion.div>
 
-      {/* Toasts */}
       <AnimatePresence>
         {toast && (
           <Toast

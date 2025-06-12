@@ -5,60 +5,72 @@ import { Facebook, Twitter, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#F0F8FF] bg-opacity-10 backdrop-blur-md shadow-inner border-t border-gray-400">
-      {/* DE SILENT ORDER Divider */}
-      <div className="w-full px-6 pt-10 pb-4 text-center">
-        <h1
-          className="text-3xl sm:text-5xl md:text-6xl text-[#000000] font-bold whitespace-nowrap overflow-hidden"
-          style={{
-            fontFamily: 'EthnocentricItalic',
-            textShadow: '0 0 12px rgb(93, 99, 104)',
-            letterSpacing: '0.25em',
-          }}
-        >
-          DE SILENT ORDER
-        </h1>
-      </div>
-
-      {/* Grid Content */}
-      <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-black">
-        {/* About */}
-        <div>
-          <p className="text-sm text-black leading-loose">
-            We empower creators and learners with cutting-edge technology, pushing the boundaries of what's possible.
+    <footer className="w-full bg-black text-white border-t border-white/10 backdrop-blur-md relative z-10"  >
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-5 gap-10">
+        {/* Brand */}
+        <div className="md:col-span-2">
+          <h2 className="text-3xl font-extrabold text-white mb-4">De Silent Order</h2>
+          <p className="text-sm text-gray-400 leading-relaxed mb-6">
+            We turn creative ambition into beautiful, functional user experiences. Let’s build the future together.
           </p>
+          <Link
+            href="/contact"
+            className="inline-block px-5 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-full hover:bg-white/20 transition backdrop-blur"
+          >
+            Let's Collaborate
+          </Link>
         </div>
 
-        {/* Navigation */}
+        {/* Navigation Links */}
         <div>
-          <ul className="space-y-2 text-sm text-black">
-            <li><Link href="/" className="hover:text-[#000000] transition">Home</Link></li>
-            <li><Link href="/about" className="hover:text-[#000000] transition">About</Link></li>
-            <li><Link href="/services" className="hover:text-[#000000] transition">Services</Link></li>
-            <li><Link href="/contact" className="hover:text-[#000000] transition">Contact</Link></li>
+          <h3 className="text-lg font-semibold text-white mb-4">Explore</h3>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li><Link href="/" className="hover:text-white transition">Home</Link></li>
+            <li><Link href="/about" className="hover:text-white transition">About</Link></li>
+            <li><Link href="/services" className="hover:text-white transition">Services</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
           </ul>
         </div>
 
-        {/* Contact */}
+        {/* Resources */}
         <div>
-          <ul className="space-y-2 text-sm text-black">
-            <li>Email: <a href="mailto:desilentorder@gmail.com" className="hover:text-[#000000]">desilentorder@gmail.com</a></li>
-            <li>Remote-first | India</li>
+          <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
+            <li><Link href="/careers" className="hover:text-white transition">Careers</Link></li>
+            <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+            <li><Link href="/terms" className="hover:text-white transition">Terms of Service</Link></li>
           </ul>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex space-x-4">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#000000] transition"><Facebook size={20} /></a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#000000] transition"><Twitter size={20} /></a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#000000] transition"><Linkedin size={20} /></a>
-          <a href="mailto:desilentorder@gmail.com" className="hover:text-[#000000] transition"><Mail size={20} /></a>
+        {/* Socials */}
+        <div>
+          <h3 className="text-lg font-semibold text-white mb-4">Stay Connected</h3>
+          <p className="text-sm text-gray-400 mb-4">Follow us for updates and insights.</p>
+          <div className="flex items-center space-x-4">
+            {[ 
+              { href: 'https://facebook.com', icon: <Facebook size={18} /> },
+              { href: 'https://twitter.com', icon: <Twitter size={18} /> },
+              { href: 'https://linkedin.com', icon: <Linkedin size={18} /> },
+              { href: 'mailto:support@edutech.com', icon: <Mail size={18} /> }
+            ].map(({ href, icon }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="text-center text-xs text-black pb-6">
-        © {new Date().getFullYear()} DE SILENT ORDER. All rights reserved.
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 py-4 text-center text-xs text-gray-500">
+        © {new Date().getFullYear()} Silent Order. All rights reserved.
       </div>
     </footer>
   );

@@ -3,9 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-// import logo from '../../public/assets/DeSilentOrder_DarkLogo_new.png';
-import { BookOpen, Code2, MonitorSmartphone, Rocket } from 'lucide-react';
-import { useEffect } from 'react';
+import logo from '../../public/assets/DeSilentOrder_DarkLogo_new.png';
+import GlassyProfileCard from '@/utils/glassy_profile_card';
 
 const team = [
   {
@@ -26,136 +25,85 @@ const team = [
     bio: 'Expert in UX/UI and building responsive interfaces.',
     image: 'https://cdn.pixabay.com/photo/2024/02/23/05/39/ai-generated-8591339_1280.jpg',
   },
+  {
+    name: 'Bob Smith',
+    role: 'Curriculum Designer',
+    bio: 'Specialist in creating interactive, outcome-based learning.',
+    image: 'https://static.vecteezy.com/system/resources/previews/046/449/468/non_2x/a-man-in-a-hooded-cloak-with-a-sword-on-transparent-background-free-png.png',
+  },
+  {
+    name: 'Carla Reyes',
+    role: 'Frontend Developer',
+    bio: 'Expert in UX/UI and building responsive interfaces.',
+    image: 'https://png.pngtree.com/png-clipart/20250108/original/pngtree-businesswoman-working-on-laptop-png-image_19319571.png',
+  },
 ];
 
 export default function Home() {
-  // Inject the Spline script on client-side
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.10.2/build/spline-viewer.js';
-    document.body.appendChild(script);
-  }, []);
-
+  
   return (
-    <main className="bg-black text-white overflow-x-hidden">
-
-      {/* Hero Logo Section with Spline */}
-      <section className="h-screen relative overflow-hidden flex items-center justify-center p-0 m-0">
-        {/* Spline Viewer as animated background */}
-        <div className="absolute inset-0 z-0">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `<spline-viewer url="https://prod.spline.design/8QSDgExb5l1n1q0F/scene.splinecode" style="width: 100%; height: 100%; position: absolute;"></spline-viewer>`,
-            }}
-          />
-        </div>
-
-        {/* Logo on top of Spline */}
-        {/* <div className="relative z-10">
+    <main className="bg-black text-gray-800 overflow-x-hidden">
+      <section className="min-h-screen bg-black relative overflow-hidden">
+        <div className="absolute inset-0 opacity-80 z-0">
           <Image
             src={logo}
-            alt="De Silent Order Logo"
-            width={800}
-            height={550}
-            className="object-contain opacity-90"
-            priority
+            alt="Background"
+            layout="fill"
+            objectFit="contain"
+            className="opacity-80 z-0"
           />
-        </div> */}
+        </div>
       </section>
 
-      {/* ...the rest of your site remains unchanged */}
-
-
       {/* Who We Are Section */}
-      <section className="py-20 bg-black px-6">
+      <section className="py-20 text-white bg-black-50 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold mb-4 text-white"
-            style={{
-            fontFamily: 'EthnocentricItalic',
-            textShadow: '0 0 12px rgb(93, 99, 104)',
-            letterSpacing: '0.25em',
-            }}
-            >Who We Are</h2>
-            <p className="text-gray-400 text-lg">
+            <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
+            <p className="text-white text-lg">
               We are a passionate team of educators and developers committed to bridging the tech gap through hands-on learning and world-class instruction. Our mission is to prepare you for the demands of tomorrow’s job market today.
             </p>
           </motion.div>
+
           <motion.img
-            src="https://static.vecteezy.com/system/resources/previews/004/409/820/large_2x/brainstorming-process-concept-with-team-meeting-free-vector.jpg"
-            alt="Teamwork Illustration"
-            className="w-full h-auto mix-blend-lighten rounded-xl"
+            src="https://static.vecteezy.com/system/resources/previews/046/449/468/non_2x/a-man-in-a-hooded-cloak-with-a-sword-on-transparent-background-free-png.png"
+            alt="3D Assassin"
+            className="w-full h-auto rounded-lg shadow-xl"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           />
         </div>
       </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-6 bg-neutral-900">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12 text-white"
-          style={{
-            fontFamily: 'EthnocentricItalic',
-            textShadow: '0 0 12px rgb(93, 99, 104)',
-            letterSpacing: '0.25em',
-            }}
-          >What We Offer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {[
-              { icon: <BookOpen size={32} />, title: 'Expert Courses', desc: 'Learn from industry professionals with real-world experience.' },
-              { icon: <Code2 size={32} />, title: 'Hands-on Projects', desc: 'Build real projects to strengthen your skills.' },
-              { icon: <MonitorSmartphone size={32} />, title: 'Responsive Learning', desc: 'Access courses anywhere, on any device.' },
-              { icon: <Rocket size={32} />, title: 'Career Boost', desc: 'Get certified and boost your job prospects.' },
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition text-white"
-              >
-                <div className="mb-4 text-indigo-400">{feature.icon}</div>
-                <h3 className="font-semibold text-xl mb-2">{feature.title}</h3>
-                <p className="text-gray-300 text-sm">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Team Section */}
       <section className="py-20 px-6 bg-black">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12 text-white"
-          style={{
-            fontFamily: 'EthnocentricItalic',
-            textShadow: '0 0 12px rgb(93, 99, 104)',
-            letterSpacing: '0.25em',
-            }}
-          >Meet the Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="relative group rounded-xl overflow-hidden shadow-xl bg-gray-900 transition"
-              >
-                <img src={member.image} alt={member.name} className="w-full h-72 object-cover" />
-                <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 p-4 text-white text-center">
-                  <h3 className="text-xl font-bold">{member.name}</h3>
-                  <p className="text-sm">{member.role}</p>
-                  <p className="mt-2 text-xs text-gray-300">{member.bio}</p>
-                </div>
-              </div>
-            ))}
+          <h2 className="text-3xl text-white font-bold mb-12">Meet the Team</h2>
+          <div className='flex justify-center items-center'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {team.map((member, index) => (
+                <GlassyProfileCard
+                  name="Jane Doe"
+                  bio="Creative UI Designer"
+                  designation="Senior Product Designer"
+                  imageUrl={member.image}
+                  linkedinUrl="https://linkedin.com/in/janedoe"
+                  instagramUrl="https://instagram.com/janedoe"
+                  email="jane@example.com"
+                />
+                
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
     </main>
   );
 }
