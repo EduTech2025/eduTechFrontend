@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, User } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-
+import { Code, Smartphone, Layout, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 
@@ -25,19 +25,18 @@ export default function Navbar({ animate }) {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const serviceItems = [
-    { name: 'Web Development', path: '/services/web-development' },
-    { name: 'App Development', path: '/services/app-development' },
-    { name: 'UI/UX Design', path: '/services/ui-ux' },
-    { name: 'Consulting', path: '/services/consulting' },
-  ];
-
+const serviceItems = [
+  { name: 'Web Development', path: '/services/web_development', icon: <Code size={16} /> },
+  { name: 'App Development', path: '/services/app_development', icon: <Smartphone size={16} /> },
+  { name: 'UI/UX Design', path: '/services/ui_ux', icon: <Layout size={16} /> },
+  { name: 'Consulting', path: '/services/consulting', icon: <HelpCircle size={16} /> },
+];
   const isActive = (path) =>
     pathname === path || (path === '/services' && pathname.startsWith('/services'));
 
   return (
     
-      <nav className="w-full py-4 fixed top-4 z-50 ">
+      <nav className="w-full py-4 fixed  z-50 ">
         <motion.div
         className="relative w-full max-w-screen-2xl"
         initial={animate ? {
@@ -78,45 +77,6 @@ export default function Navbar({ animate }) {
               <Link href="/">De Silent Order</Link>
             </div>
 
-            {/* Center: Menu - hidden on mobile
-            <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
-              {navItems.map((item) =>
-                item.hasDropdown ? (
-                  <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className="relative group">
-                    <button
-                      className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white hover:text-black hover:bg-white'
-                        }`}
-                    >
-                      {item.name}
-                      <ChevronDown size={18} className="ml-1" />
-                    </button>
-                    <div className="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-2xl shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
-                      {serviceItems.map((service) => (
-                        <Link
-                          key={service.name}
-                          href={service.path}
-                          className={`block px-4 py-2 hover:bg-gray-100 ${pathname === service.path ? 'text-red-500 font-medium' : ''
-                            }`}
-                        >
-                          {service.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={item.name}
-                    href={item.path}
-                    style={{ fontFamily: 'Anta-Regular' }}
-                    onClick={() => setIsOpen(false)}
-                    className={`block text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive(item.path) ? 'bg-white text-black' : 'text-white hover:text-black hover:bg-white'
-                      }`}
-                  >
-                    {item.name}
-                  </Link>
-                )
-              )}
-            </div> */}
              <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
               {navItems.map((item) =>
                 item.hasDropdown ? (
@@ -129,14 +89,11 @@ export default function Navbar({ animate }) {
                     </button>
                     <div className="absolute left-0 mt-2 w-56 bg-white/10 text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
                       {serviceItems.map((service) => (
-                        <Link
-                          key={service.name}
-                          href={service.path}
-                          className={`block px-4 py-2 hover:bg-white/20 rounded-md transition duration-200 ${pathname === service.path ? 'text-black bg-white' : 'text-white'}`}
-                        >
-                          {service.name}
-                        </Link>
-                      ))}
+                      <Link key={service.name} href={service.path} className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
+                        {service.icon}
+                        {service.name}
+                      </Link>
+                    ))}
                     </div>
                   </div>
                 ) : (
@@ -192,7 +149,7 @@ export default function Navbar({ animate }) {
                   href="/login"
                   className="px-4 py-1.5 border border-white text-white rounded-2xl hover:bg-white/10 transition text-sm font-medium"
                 >
-                  Login
+                  Login/Sign Up
                 </Link>
               )}
             </div>
@@ -297,7 +254,7 @@ export default function Navbar({ animate }) {
                   className="block text-white text-sm font-medium hover:text-black hover:bg-white py-2"
                   onClick={() => setIsOpen(false)}
                 >
-                  Login
+                  Login /Sign Up
                 </Link>
               )}
             </div>

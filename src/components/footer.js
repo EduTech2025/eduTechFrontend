@@ -5,77 +5,72 @@ import { Facebook, Twitter, Linkedin, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative bottom-0 w-full bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Brand / About */}
-        <div className='col-span-1 pr-4'>
-          <h2 className="text-2xl font-bold text-white mb-4">Silent Order</h2>
-          <p className="text-sm leading-relaxed">
-            Empowering learners with cutting-edge tech education. Your journey to digital mastery begins here.
+    <footer className="w-full bg-black text-white border-t border-white/10 backdrop-blur-md relative z-10"  >
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-5 gap-10">
+        {/* Brand */}
+        <div className="md:col-span-2">
+          <h2 className="text-3xl font-extrabold text-white mb-4">De Silent Order</h2>
+          <p className="text-sm text-gray-400 leading-relaxed mb-6">
+            We turn creative ambition into beautiful, functional user experiences. Let’s build the future together.
           </p>
+          <Link
+            href="/contact"
+            className="inline-block px-5 py-2 text-sm font-medium text-white bg-white/10 border border-white/20 rounded-full hover:bg-white/20 transition backdrop-blur"
+          >
+            Let's Collaborate
+          </Link>
         </div>
 
-        {/* Quick Links */}
+        {/* Navigation Links */}
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link href="/" className="hover:text-blue-400 transition">Home</Link>
-            </li>
-            <li>
-              <Link href="/about" className="hover:text-blue-400 transition">About</Link>
-            </li>
-            <li>
-              <Link href="/services" className="hover:text-blue-400 transition">Services</Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-blue-400 transition">Contact</Link>
-            </li>
+          <h3 className="text-lg font-semibold text-white mb-4">Explore</h3>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li><Link href="/" className="hover:text-white transition">Home</Link></li>
+            <li><Link href="/about" className="hover:text-white transition">About</Link></li>
+            <li><Link href="/services" className="hover:text-white transition">Services</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
           </ul>
         </div>
 
-        {/* Quick Links */}
+        {/* Resources */}
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link href="/" className="hover:text-blue-400 transition">Home</Link>
-            </li>
-            <li>
-              <Link href="/about" className="hover:text-blue-400 transition">About</Link>
-            </li>
-            <li>
-              <Link href="/services" className="hover:text-blue-400 transition">Services</Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-blue-400 transition">Contact</Link>
-            </li>
+          <h3 className="text-lg font-semibold text-white mb-4">Resources</h3>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
+            <li><Link href="/careers" className="hover:text-white transition">Careers</Link></li>
+            <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+            <li><Link href="/terms" className="hover:text-white transition">Terms of Service</Link></li>
           </ul>
         </div>
 
-        {/* Social Media */}
+        {/* Socials */}
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Follow Us</h3>
-          <div className="flex space-x-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition">
-              <Facebook size={20} />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400 transition">
-              <Twitter size={20} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition">
-              <Linkedin size={20} />
-            </a>
-            <a href="mailto:support@edutech.com" className="hover:text-green-400 transition">
-              <Mail size={20} />
-            </a>
+          <h3 className="text-lg font-semibold text-white mb-4">Stay Connected</h3>
+          <p className="text-sm text-gray-400 mb-4">Follow us for updates and insights.</p>
+          <div className="flex items-center space-x-4">
+            {[ 
+              { href: 'https://facebook.com', icon: <Facebook size={18} /> },
+              { href: 'https://twitter.com', icon: <Twitter size={18} /> },
+              { href: 'https://linkedin.com', icon: <Linkedin size={18} /> },
+              { href: 'mailto:support@edutech.com', icon: <Mail size={18} /> }
+            ].map(({ href, icon }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition"
+              >
+                {icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="border-t border-gray-700 mt-8 py-4 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} EduTech. All rights reserved.
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 py-4 text-center text-xs text-gray-500">
+        © {new Date().getFullYear()} Silent Order. All rights reserved.
       </div>
     </footer>
   );
