@@ -40,6 +40,7 @@ const team = [
 ];
 
 export default function Home() {
+  
   return (
     <main className="bg-black text-gray-800 overflow-x-hidden">
       <section className="min-h-screen bg-black relative overflow-hidden">
