@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '../../public/assets/DeSilentOrder_DarkLogo_new.png';
+
 import GlassyProfileCard from '@/utils/glassy_profile_card';
 
 const team = [
@@ -46,7 +46,7 @@ export default function Home() {
       <section className="min-h-screen bg-black relative overflow-hidden">
         <div className="absolute inset-0 opacity-80 z-0">
           <Image
-            src={logo}
+            src='/assets/DeSilentOrder_DarkLogo_new.png'
             alt="Background"
             layout="fill"
             objectFit="contain"
