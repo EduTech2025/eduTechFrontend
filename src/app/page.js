@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
+
 import GlassyProfileCard from '@/utils/glassy_profile_card';
 
 const team = [
@@ -65,7 +67,7 @@ export default function Home() {
           >
             <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
             <p className="text-white text-lg">
-              We are a passionate team of educators and developers committed to bridging the tech gap through hands-on learning and world-class instruction. Our mission is to prepare you for the demands of tomorrow’s job market today.
+              We are a passionate team of educators and developers committed to bridging the tech gap through hands-on learning and world-class instruction and provide you with best software solution and services. Our mission is to prepare you for the demands of tomorrow’s job market today.
             </p>
           </motion.div>
 
@@ -80,6 +82,177 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Services Section */}
+      <section className="py-20 px-6 bg-black text-white">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.2 }}
+          className="max-w-7xl mx-auto"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+            <p className="text-gray-400 text-lg">
+              Empowering you with tailored tech solutions built for the future.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+            {[
+              {
+                image: "/assets/service/app-development.png", // Update these image paths
+                tech: ["Next.js", "Tailwind CSS"],
+                title: "Web Development",
+                description:
+                  "Custom websites built for performance, responsiveness, and scalability.",
+                link: "/services/web-development",
+              },
+              {
+                image: "/assets/service/app-development.png",
+                tech: ["Flutter", "React Native"],
+                title: "App Development",
+                description:
+                  "Cross-platform mobile apps with sleek UI and native-like performance.",
+                link: "/services/app-development",
+              },
+              {
+                image: "/assets/service/app-development.png",
+                tech: ["Shopify", "Liquid"],
+                title: "Shopify Website",
+                description:
+                  "Elegant Shopify stores optimized for sales and SEO.",
+                link: "/services/shopify",
+              },
+              {
+                image: "/assets/service/app-development.png",
+                tech: ["Figma", "Adobe XD"],
+                title: "UI/UX Design",
+                description:
+                  "Beautiful, user-friendly designs tailored to your brand.",
+                link: "/services/uiux-design",
+              },
+            ]
+            .map((service, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="relative group rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/30 transition hover:-translate-y-1 backdrop-blur-md"
+              >
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={300}
+                  height={300}
+                  className="object-cover group-hover:scale-105 transition-transform duration-500 w-full"
+                />
+                <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
+                  {service.tech.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="bg-purple-600/80 text-white text-xs px-2 py-0.5 rounded-full shadow"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="p-5 space-y-2">
+                  <h3 className="text-xl font-semibold text-white">{service.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                  <Link
+                    href={service.link}
+                    className="inline-block text-purple-400 text-sm font-medium hover:underline mt-1"
+                  >
+                    View Service →
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-20 px-6 bg-black text-white">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.2 }}
+        className="max-w-7xl mx-auto"
+      >
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">Our Products</h2>
+          <p className="text-gray-400 text-lg">
+            Explore our tools designed to simplify and accelerate your workflow.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+          {Array(4).fill({
+            image: "/assets/service/app-development.png", // Update this image path
+            tech: ["React", "PDF.js"],
+            title: "PDF Editor",
+            description:
+              "Edit, merge, split, and annotate PDF files in a user-friendly interface.",
+            link: "/products/pdf-editor",
+          }).map((product, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="relative group rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/30 transition hover:-translate-y-1 backdrop-blur-md"
+            >
+              <Image
+                src={product.image}
+                alt={product.title}
+                width={300}
+                height={300}
+                className="object-cover group-hover:scale-105 transition-transform duration-500 w-full"
+              />
+              <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
+                {product.tech.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-purple-600/80 text-white text-xs px-2 py-0.5 rounded-full shadow"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="p-5 space-y-2">
+                <h3 className="text-xl font-semibold text-white">{product.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {product.description}
+                </p>
+                <Link
+                  href={product.link}
+                  className="inline-block text-purple-400 text-sm font-medium hover:underline mt-1"
+                >
+                  View Product →
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/products"
+            className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-6 py-3 rounded-full transition duration-300 shadow-lg"
+          >
+            View All Products
+          </Link>
+        </div>
+      </motion.div>
+    </section>
+
 
       {/* Team Section */}
       <section className="py-20 px-6 bg-black">
@@ -103,7 +276,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+       
     </main>
   );
 }
