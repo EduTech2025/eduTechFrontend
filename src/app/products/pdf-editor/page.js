@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
-
-GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js`;
 
 export default function PDFEditor() {
   const canvasRef = useRef(null);
@@ -29,8 +26,12 @@ export default function PDFEditor() {
   const [resizingId, setResizingId] = useState(null);
 
   const renderPDF = async (bytes, pageNumber = 1) => {
+     const pdfjsLib = await import('pdfjs-dist/build/pdf');
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.5.207/pdf.worker.min.js';
+
     setLoading(true);
-    const loadingTask = getDocument({ data: bytes });
+    const loadingTask = pdfjsLib.getDocument({ data: bytes });
     const pdf = await loadingTask.promise;
 
     setNumPages(pdf.numPages);
