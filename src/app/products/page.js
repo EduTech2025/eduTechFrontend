@@ -14,6 +14,13 @@ const products = [
     category: 'ArcLine',
   },
   {
+    name: 'PDF Editor',
+    image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
+    link: '/products/pdf-editor',
+    category: 'ArcLine',
+  },
+  
+  {
     name: 'PDF to Word',
     image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
     link: '/products/pdf-to-word',
