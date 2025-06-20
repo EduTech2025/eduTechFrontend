@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,6 +8,16 @@ import Image from 'next/image';
 
 
 import GlassyProfileCard from '@/utils/glassy_profile_card';
+
+
+
+const logos = [
+  '/assets/brands/1.png',
+  '/assets/brands/2.png',
+  '/assets/brands/3.png',
+  '/assets/brands/4.png',
+  '/assets/brands/5.png',
+];
 
 const team = [
   {
@@ -41,7 +52,9 @@ const team = [
   },
 ];
 
+
 export default function Home() {
+  const [paused, setPaused] = useState(false);
   
   return (
     <main className="bg-black text-gray-800 overflow-x-hidden">
@@ -252,7 +265,61 @@ export default function Home() {
         </div>
       </motion.div>
     </section>
+      
+      {/* START: BRANDS SECTION  */}
+     ];
 
+      <section className="py-16 bg-black overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-white text-2xl font-semibold text-center mb-10">
+          Trusted by Leading Brands
+        </h2>
+
+        {/* Carousel Wrapper */}
+        <div
+          className="overflow-hidden group"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div
+            className={`flex gap-10 w-max will-change-transform ${
+              paused ? '' : 'animate-scrollRight'
+            }`}
+          >
+            {[...logos, ...logos].map((logo, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-40 h-20 flex items-center justify-center bg-white/10 border border-white/20 rounded-xl shadow-lg backdrop-blur-md transition"
+              >
+                <img
+                  src={logo}
+                  alt={`Brand ${i + 1}`}
+                  className="max-h-12 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Animation */}
+      <style jsx>{`
+        @keyframes scrollRight {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-scrollRight {
+          animation: scrollRight 30s linear infinite;
+        }
+      `}</style>
+    </section>
+
+      {/* END: BRANDS SECTION */}
 
       {/* Team Section */}
       <section className="py-20 px-6 bg-black">
