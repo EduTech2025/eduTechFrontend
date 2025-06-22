@@ -17,19 +17,19 @@ export default function Navbar({ animate }) {
 
   const navItems = [
     { name: 'Home', path: '/' },
-
+    
 //     { name: 'About', path: '/about' },
     // { name: 'Blog', path: '/blogs/user' },
     { name: 'Product', path: '/products' },
-    { name: 'Services', hasDropdown: true },
+    { name: 'Services', hasDropdown: true},
     { name: 'Contact', path: '/contact' },
   ];
 
 const serviceItems = [
-  { name: 'Web Development', path: '/services/web_development', icon: <Code size={16} /> },
-  { name: 'App Development', path: '/services/app_development', icon: <Smartphone size={16} /> },
-  { name: 'UI/UX Design', path: '/services/ui_ux', icon: <Layout size={16} /> },
-  { name: 'Consulting', path: '/services/consulting', icon: <HelpCircle size={16} /> },
+  { name: 'Web Development', path: '/services?tab=web', icon: <Code size={16} /> },
+  { name: 'App Development', path: '/services?tab=app', icon: <Smartphone size={16} /> },
+  { name: 'UI/UX Design', path: '/services?tab=uiux', icon: <Layout size={16} /> },
+  // { name: 'Consulting', path: '/services?tab=consulting', icon: <HelpCircle size={16} /> },
 ];
   const isActive = (path) =>
     pathname === path || (path === '/services' && pathname.startsWith('/services'));
