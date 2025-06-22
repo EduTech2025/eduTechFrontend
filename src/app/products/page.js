@@ -6,6 +6,7 @@ import { Search } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 
+
 const products = [
   {
     name: 'Image Background Remover',
@@ -14,9 +15,21 @@ const products = [
     category: 'ArcLine',
   },
   {
+    name: 'PDF To Excel',
+    image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
+    link: '/products/pdf-to-excel',
+    category: 'ArcLine',
+  },
+  {
     name: 'PDF Editor',
     image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
     link: '/products/pdf-editor',
+    category: 'ArcLine',
+  },
+  {
+    name: 'Add Watermark',
+    image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
+    link: '/products/add-watermark',
     category: 'ArcLine',
   },
   
@@ -24,6 +37,13 @@ const products = [
     name: 'PDF to Word',
     image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
     link: '/products/pdf-to-word',
+    category: 'OrbitFlow',
+  },
+   
+  {
+    name: 'Image to Pdf',
+    image: 'https://onlinepngtools.com/images/png/illustrations/remove-icon-background.png',
+    link: '/products/image-to-pdf',
     category: 'OrbitFlow',
   },
   {

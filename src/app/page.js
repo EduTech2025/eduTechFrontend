@@ -248,7 +248,7 @@ const [paused, setPaused] = useState(false);
             View All Products
           </Link>
         </div>
-      </motion.div>
+        </section>
     
       
 
@@ -302,7 +302,6 @@ const [paused, setPaused] = useState(false);
       `}</style>
     </section>
 
-      </section>
 
 
       <section className="pt-10 px-6 bg-black">
