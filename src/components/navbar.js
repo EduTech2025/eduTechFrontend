@@ -36,7 +36,7 @@ const serviceItems = [
 
   return (
     
-      <nav className="w-full py-4 fixed  z-50 ">
+      <nav className="w-full py-4 fixed bg-black z-50 ">
         <motion.div
         className="relative w-full max-w-screen-2xl"
         initial={animate ? {

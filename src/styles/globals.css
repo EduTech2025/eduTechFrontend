@@ -66,3 +66,14 @@ body {
 .group:hover .card-3d {
   transform: rotateY(10deg) rotateX(5deg);
 }
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
