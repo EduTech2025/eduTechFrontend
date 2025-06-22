@@ -5,7 +5,13 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, User } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { Code, Smartphone, Layout, HelpCircle } from 'lucide-react';
+import { FileText,
+  Video,
+  Image,
+  BookOpen,
+  Wrench,
+  Bot, Code, Smartphone, Layout, HelpCircle } from 'lucide-react';
+
 import { motion } from 'framer-motion';
 
 
@@ -17,27 +23,88 @@ export default function Navbar({ animate }) {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    
-//     { name: 'About', path: '/about' },
-    // { name: 'Blog', path: '/blogs/user' },
     { name: 'Product', path: '/products' },
-    { name: 'Services', hasDropdown: true},
+    { name: 'Dashboard', path: '/dashboard' },
+    { name: 'Services', hasDropdown: true, path: '/services?tab=web' },
+    { name: 'Resources', hasResourceDropdown: true, path: '/resources' },
     { name: 'Contact', path: '/contact' },
   ];
 
-const serviceItems = [
-  { name: 'Web Development', path: '/services?tab=web', icon: <Code size={16} /> },
-  { name: 'App Development', path: '/services?tab=app', icon: <Smartphone size={16} /> },
-  { name: 'UI/UX Design', path: '/services?tab=uiux', icon: <Layout size={16} /> },
-  // { name: 'Consulting', path: '/services?tab=consulting', icon: <HelpCircle size={16} /> },
+  const resourceItems = [
+  {
+    name: 'PDF',
+    icon: <FileText size={16} />, // Document-related
+    children: [
+      { name: 'PDF Editor' },
+      { name: 'PDF to Word' },
+      { name: 'Merge PDFs' },
+    ],
+  },
+  {
+    name: 'Video',
+    icon: <Video size={16} />, // Video player icon
+    children: [
+      { name: 'Video Trimmer' },
+      { name: 'Add Subtitles' },
+    ],
+  },
+  {
+    name: 'Images',
+    icon: <Image size={16} />, // Image frame
+    children: [
+      { name: 'Image Compressor' },
+      { name: 'Convert to WebP' },
+    ],
+  },
+  {
+    name: 'Course',
+    icon: <BookOpen size={16} />, // Book or course material
+    children: [
+      { name: 'My Courses' },
+      { name: 'Trending' },
+    ],
+  },
+  {
+    name: 'Tool',
+    icon: <Wrench size={16} />, // Generic tool icon
+    children: [
+      { name: 'Color Picker' },
+      { name: 'Regex Builder' },
+    ],
+  },
+  {
+    name: 'AI',
+    icon: <Bot size={16} />, // Robot for AI tools
+    children: [
+      { name: 'AI Writer' },
+      { name: 'AI Translator' },
+    ],
+  },
+  {
+    name: 'Web Development',
+    icon: <Code size={16} />, // Code brackets
+    children: [
+      { name: 'HTML Formatter' },
+      { name: 'JS Minifier' },
+    ],
+  },
 ];
+
+  const serviceItems = [
+    { name: 'Web Development', path: '/services?tab=web', icon: <Code size={16} /> },
+    { name: 'App Development', path: '/services?tab=app', icon: <Smartphone size={16} /> },
+    { name: 'UI/UX Design', path: '/services?tab=uiux', icon: <Layout size={16} /> },
+    { name: 'Shopify', path: '/services?tab=shopify', icon: <HelpCircle size={16} /> },
+  ];
   const isActive = (path) =>
-    pathname === path || (path === '/services' && pathname.startsWith('/services'));
+    pathname === path ||
+    (path === '/services' && pathname.startsWith('/services')) ||
+    (path === '/resources' && pathname.startsWith('/resources'));
 
   return (
-    
-      <nav className="w-full py-4 fixed bg-black z-50 ">
-        <motion.div
+
+    <nav className="w-full py-4 fixed bg-black z-50 ">
+      <motion.div
         className="relative w-full max-w-screen-2xl"
         initial={animate ? {
           clipPath: 'polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)',
@@ -77,36 +144,78 @@ const serviceItems = [
               <Link href="/">De Silent Order</Link>
             </div>
 
-             <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
+            <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
               {navItems.map((item) =>
                 item.hasDropdown ? (
-                  <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className="relative group">
-                    <button
-                      className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white  hover:bg-white/10'}`}
-                    >
-                      {item.name}
-                      <ChevronDown size={18} className="ml-1" />
-                    </button>
-                    <div className="absolute left-0 mt-2 w-56 bg-white/10 text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
-                      {serviceItems.map((service) => (
-                      <Link key={service.name} href={service.path} className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
-                        {service.icon}
-                        {service.name}
-                      </Link>
-                    ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={item.name}
+                  <Link key={item.name}
                     href={item.path}
                     style={{ fontFamily: 'Anta-Regular' }}
                     onClick={() => setIsOpen(false)}
-                    className={`block text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive(item.path) ? 'bg-white text-black' : 'text-white hover:bg-white/10 '}`}
                   >
-                    {item.name}
+                    <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className="relative group">
+                      <button
+                        className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white  hover:bg-white/10'}`}
+                      >
+                        {item.name}
+                        {/* <ChevronDown size={18} className="ml-1" /> */}
+                      </button>
+                      <div className="absolute left-0 mt-2 w-56 bg-[#1a1a1a] text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
+                        {serviceItems.map((service) => (
+                          <Link  href={service.path} className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
+                            {service.icon}
+                            {service.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </Link>
+                ) : item.hasResourceDropdown ? (
+                  <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className=" group">
+                    <button
+                      className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/resources') ? 'bg-white text-black' : 'text-white hover:bg-white/10'
+                        }`}
+                    >
+                      {item.name}
+                      {/* <ChevronDown size={18} className="ml-1" /> */}
+                    </button>
+
+                    {/* Full-width dropdown */}
+                    <div className="absolute left-0 mt-2 w-full bg-[#1a1a1a] text-white rounded-xl shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50 p-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-6">
+                        {resourceItems.map((category) => (
+                          <div key={category.name}>
+                            <div className="flex items-center gap-2 mb-2  text-white">
+                              {category.icon}
+                              <span>{category.name}</span>
+                            </div>
+                            <ul className="space-y-1 text-sm">
+                              {category.children.map((link) => (
+                                <li key={link.name}>
+                                  <div
+                                    className="block px-2 py-1 rounded hover:bg-red-500 hover:text-white transition duration-200"
+                                  >
+                                    {link.name}
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 )
+                  : (
+                    <Link
+                      key={item.name}
+                      href={item.path}
+                      style={{ fontFamily: 'Anta-Regular' }}
+                      onClick={() => setIsOpen(false)}
+                      className={`block text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive(item.path) ? 'bg-white text-black' : 'text-white hover:bg-white/10 '}`}
+                    >
+                      {item.name}
+                    </Link>
+                  )
               )}
             </div>
 
@@ -193,8 +302,8 @@ const serviceItems = [
                             key={service.name}
                             href={service.path}
                             className={`block px-2 py-1 text-sm transition duration-200 ${pathname === service.path
-                                ? 'text-red-500 font-semibold'
-                                : 'text-white hover:text-blue-300'
+                              ? 'text-red-500 font-semibold'
+                              : 'text-white hover:text-blue-300'
                               }`}
                             onClick={() => setIsOpen(false)}
                           >
@@ -259,10 +368,10 @@ const serviceItems = [
               )}
             </div>
           )}
-          
+
         </div>
-        </motion.div>
-      </nav>
-    
+      </motion.div>
+    </nav>
+
   );
 }
