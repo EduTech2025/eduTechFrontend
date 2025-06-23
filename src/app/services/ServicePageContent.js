@@ -110,7 +110,7 @@ export default function ServicesPageContent() {
 
 
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-6 font-sans">
+    <main className="min-h-screen  text-white px-6 py-6 font-sans">
       {/* Tabs */}
       <div className="flex justify-center mb-8 gap-6">
         {tabs.map((tab) => (

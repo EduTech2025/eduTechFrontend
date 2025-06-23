@@ -96,15 +96,15 @@ const [paused, setPaused] = useState(false);
   });
 
   return (
-    <main className="bg-black text-gray-800 overflow-x-hidden">
-      <section className="min-h-screen bg-black relative overflow-hidden">
-        <div className="absolute inset-0 opacity-80 z-0">
+    <main className=" text-gray-800 overflow-x-hidden">
+      <section className="min-h-screen  relative overflow-hidden">
+        <div className="absolute inset-0 opacity-100 z-0">
           <Image
             src="/assets/DeSilentOrder_DarkLogo_new.png"
             fill
             style={{ objectFit: "contain" }}
             alt="Background"
-            className="opacity-80 z-0"
+            className="opacity-60 z-0"
           />
         </div>
       </section>
@@ -133,7 +133,7 @@ const [paused, setPaused] = useState(false);
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-black text-white">
+      <section className="py-20 px-6  text-white">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-gray-400 text-lg">
@@ -184,7 +184,7 @@ const [paused, setPaused] = useState(false);
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-black text-white">
+      <section className="py-20 px-6 text-white">
         <div className="max-w-7xl mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Products</h2>
           <p className="text-gray-400 text-lg">
@@ -252,7 +252,7 @@ const [paused, setPaused] = useState(false);
     
       
 
-      <section className="py-16 bg-black overflow-hidden relative">
+      <section className="py-16  overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-white text-2xl font-semibold text-center mb-10">
           Trusted by Leading Brands
@@ -304,7 +304,7 @@ const [paused, setPaused] = useState(false);
 
 
 
-      <section className="pt-10 px-6 bg-black">
+      <section className="pt-10 px-6 ">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl text-white font-bold mb-12">Meet the Team</h2>
           <div className='flex justify-center items-center'>
