@@ -71,7 +71,7 @@ export default function ProductsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans px-4 py-6">
+    <div className="min-h-screen  text-white font-sans px-4 py-6">
       {/* Filters and Search */}
       <section className="w-full flex justify-start mb-10 px-6">
         <div className="w-full sm:w-3/4 lg:w-1/2 flex flex-col sm:flex-row justify-between items-center gap-6 backdrop-blur-xl bg-white/10 border border-white/10 shadow-lg rounded-2xl px-4 py-1 transition-all duration-300">

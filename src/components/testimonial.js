@@ -50,7 +50,7 @@ export default function TestimonialScroller() {
   }, []);
 
   return (
-    <div className="relative bg-black py-10 overflow-hidden">
+    <div className="relative  py-10 overflow-hidden">
       <h2 className="text-white text-4xl font-extrabold text-center mb-12 tracking-tight">
         What Our Clients Say
       </h2>

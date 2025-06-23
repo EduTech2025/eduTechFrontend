@@ -149,6 +149,7 @@ export default function Navbar({ animate }) {
                 item.hasDropdown ? (
                   <Link key={item.name}
                     href={item.path}
+                    passHref
                     style={{ fontFamily: 'Anta-Regular' }}
                     onClick={() => setIsOpen(false)}
                   >
@@ -161,7 +162,7 @@ export default function Navbar({ animate }) {
                       </button>
                       <div className="absolute left-0 mt-2 w-56 bg-[#1a1a1a] text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
                         {serviceItems.map((service) => (
-                          <Link  href={service.path} className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
+                          <Link  href={service.path} passHref className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
                             {service.icon}
                             {service.name}
                           </Link>
