@@ -7,8 +7,8 @@ const nextConfig = {
         hostname: 'onlinepngtools.com',
       },
     ]
-  
   },
+   
   
 };
 

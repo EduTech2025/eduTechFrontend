@@ -1,10 +1,25 @@
 import api from "./base_url";
 
 const endPoints = {
+  translate: "modules/translate/",
+  image_bg_remover: "modules/image-bg-remover/",
+  pdf_to_word: "modules/pdf-to-word/",
   merge_pdf: "modules/merge-pdfs/",
+  excel_to_pdf: "modules/excel-to-pdf/",
   pdf_to_excel: "modules/pdf-to-excel/",
+  pdf_to_images: "modules/pdf-to-images/",
   add_watermark: "modules/add-watermark/",
+  pdf_to_rotate: "modules/pdf-to-rotate/",
+  repair_pdf: "modules/repair-pdf/",
+  split_pdf: "modules/split-pdf/",
+  pagenumber_pdf: "modules/pagenumber_pdf/",
+  organize_pdf: "modules/organize-pdf/",
+  lock_unlock_pdf: "modules/lock-unlock-pdf/",
+  protect_pdf: "modules/protect-pdf/",
+  compress_pdf: "modules/compress-pdf/",
+  word_ppt_to_pdf: "modules/word-ppt-to-pdf/",
 };
+
 
 const modulesApi = {
 
