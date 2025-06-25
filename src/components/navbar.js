@@ -24,7 +24,7 @@ export default function Navbar({ animate }) {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Product', path: '/products' },
-    { name: 'Dashboard', path: '/dashboard' },
+    { name: 'Dashboard', path: '/student_dashboard/profile' },
     { name: 'Services', hasDropdown: true, path: '/services?tab=web' },
     { name: 'Resources', hasResourceDropdown: true, path: '/resources' },
     { name: 'Contact', path: '/contact' },
