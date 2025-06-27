@@ -10,9 +10,9 @@ export default function DashboardLayout({ children }) {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden ">  
+    <div id='main-client' className="flex h-screen overflow-hidden">  
       <Sidebar collapsed={collapsed} toggleSidebar={toggleSidebar} />
-      <main className="flex-1 p-2 overflow-auto">
+      <main className="flex-1 p-2 overflow-hidden">
         {children}
       </main>
     </div>
