@@ -19,12 +19,11 @@ export default function Navbar({ animate }) {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const pathname = usePathname();
-  const { email, isAuthenticated, logout } = useAuth();
+  const { email, isAuthenticated, logout,role } = useAuth();
 
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Product', path: '/products' },
-    { name: 'Dashboard', path: '/student_dashboard/profile' },
     { name: 'Services', hasDropdown: true, path: '/services?tab=web' },
     { name: 'Resources', hasResourceDropdown: true, path: '/resources' },
     { name: 'Contact', path: '/contact' },
@@ -137,7 +136,7 @@ export default function Navbar({ animate }) {
           } : {}}
         />
         <div className="px-4 sm:px-6 lg:px-12">
-          <div className="backdrop-blur-md justify-between bg-white/10 border border-white/20 rounded-full px-6 py-1 flex items-center space-x-6 shadow-lg">
+          <div className="backdrop-blur-md py-1 justify-between bg-white/10 border border-white/20 rounded-full px-6 py-1 flex items-center space-x-6 shadow-lg">
 
             {/* Left: Logo */}
             <div className=" font-100 text-white  transition" style={{ fontFamily: 'EthnocentricItalic' }}>
@@ -222,46 +221,44 @@ export default function Navbar({ animate }) {
 
             {/* Right: Login/Profile */}
             <div className="hidden md:flex items-center space-x-4">
-              {isAuthenticated ? (
-                <div className="relative group">
-                  <button className="flex items-center gap-2 px-6 py-1.5 rounded-2xl border border-white hover:bg-white/10 transition">
-                    <User className="w-5 h-5 text-white" />
-                    <span className="text-sm">{email}</span>
-                    <ChevronDown size={16} />
-                  </button>
-                  <div className="absolute right-0 mt-2 w-76 bg-white rounded-2xl shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition z-50">
-                    <div className="px-4 py-3 border-b text-sm text-gray-600">
-                      Signed in as <br />
-                      <span className="font-semibold text-gray-900">{email}</span>
+                {isAuthenticated ? (
+                    <div className="relative group">
+                      <button className="flex items-center gap-2 px-6 py-1.5 rounded-2xl border border-white hover:bg-white/10 transition">
+                        <User className="w-5 h-5 text-white" />
+                      </button>
+
+                      <div className="absolute right-0 mt-2 w-76 bg-white rounded-2xl shadow-lg ring-1 ring-black/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition z-50">
+                        <div className="px-4 py-3 border-b text-sm text-gray-600">
+                          Signed in as <br />
+                          <span className="font-semibold text-gray-900">{email}</span>
+                        </div>
+                        <Link
+                            href={
+                              role === 'admin'
+                                  ? '/admin_dashboard/profile'
+                                  : '/student_dashboard/profile'
+                            }
+                            className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50 hover:text-blue-600"
+                        >
+                          {role === 'admin' ? 'Admin Dashboard' : 'Dashboard'}
+                        </Link>
+
+                        <button
+                            onClick={logout}
+                            className="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-red-50 hover:text-red-600"
+                        >
+                          Logout
+                        </button>
+                      </div>
                     </div>
+                ) : (
                     <Link
-                      href="/profile"
-                      className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50 hover:text-blue-600"
+                        href="/login"
+                        className="px-4 py-1.5 border border-white text-white rounded-2xl hover:bg-white/10 transition text-sm font-medium"
                     >
-                      Profile
+                      Login / Sign Up
                     </Link>
-                    <Link
-                      href="/dashboard"
-                      className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-50 hover:text-blue-600"
-                    >
-                      Admin Dashboard
-                    </Link>
-                    <button
-                      onClick={logout}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-red-50 hover:text-red-600"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  href="/login"
-                  className="px-4 py-1.5 border border-white text-white rounded-2xl hover:bg-white/10 transition text-sm font-medium"
-                >
-                  Login/Sign Up
-                </Link>
-              )}
+                )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -328,45 +325,47 @@ export default function Navbar({ animate }) {
               )}
 
               {/* Profile / Login on Mobile */}
-              {isAuthenticated ? (
-                <div className="pt-4 border-t border-white/20">
-                  <div className="text-sm text-white mb-2">
-                    Signed in as <br />
-                    <span className="font-semibold break-all">{email}</span>
-                  </div>
-                  <Link
-                    href="/profile"
-                    className="block text-white text-sm hover:text-black hover:bg-white py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Profile
-                  </Link>
-                  <Link
-                    href="/dashboard"
-                    className="block text-white text-sm hover:text-black hover:bg-white py-1"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Admin Dashboard
-                  </Link>
-                  <button
-                    onClick={() => {
-                      logout();
-                      setIsOpen(false);
-                    }}
-                    className="block w-full text-left text-sm text-red-400 hover:text-red-600 py-1"
-                  >
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <Link
-                  href="/login"
-                  className="block text-white text-sm font-medium hover:text-black hover:bg-white py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Login /Sign Up
-                </Link>
-              )}
+              <div className="pt-4 border-t border-white/20">
+                {isAuthenticated ? (
+                    <>
+                      <div className="text-sm text-white mb-2">
+                        Signed in as <br />
+                        <span className="font-semibold break-all">{email}</span>
+                      </div>
+
+                      <Link
+                          href={
+                            role === 'admin'
+                                ? '/admin_dashboard/profile'
+                                : '/student_dashboard/profile'
+                          }
+                          className="block text-white text-sm hover:text-black hover:bg-white py-1"
+                          onClick={() => setIsOpen(false)}
+                      >
+                        {role === 'admin' ? 'Admin Dashboard' : 'Student Dashboard'}
+                      </Link>
+
+                      <button
+                          onClick={() => {
+                            logout();
+                            setIsOpen(false);
+                          }}
+                          className="block w-full text-left text-sm text-red-400 hover:text-red-600 py-1"
+                      >
+                        Logout
+                      </button>
+                    </>
+                ) : (
+                    <Link
+                        href="/login"
+                        className="block text-white text-sm font-medium hover:text-black hover:bg-white py-2"
+                        onClick={() => setIsOpen(false)}
+                    >
+                      Login / Sign Up
+                    </Link>
+                )}
+              </div>
+
             </div>
           )}
 

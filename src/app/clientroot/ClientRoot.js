@@ -20,8 +20,8 @@ export default function ClientRoot({ children }) {
   };
 
    const pathname = usePathname();
+  const hideFooter = pathname.startsWith('/student_dashboard') || pathname.startsWith('/admin_dashboard');
 
-  const hideFooter = pathname.startsWith('/student_dashboard');
 
   useEffect(() => {
     if (launched) {
@@ -55,7 +55,7 @@ export default function ClientRoot({ children }) {
         </motion.div>
       )} */}
       <Navbar/>
-          <main id='main-client'>{children}</main>
+          <main className='pt-16'>{children}</main>
         {hideFooter ?null: <Footer />}
       
     </>

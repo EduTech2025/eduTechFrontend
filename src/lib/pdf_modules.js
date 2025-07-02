@@ -50,9 +50,14 @@ function blobUrlDownload(response, defaultFileName = "downloaded_file") {
   window.URL.revokeObjectURL(url);
 }
 
+
+// important
 const modulesApi = {
   excel_to_pdf_api: async function (file) {
     return handleUpload(endPoints.excel_to_pdf, file, "converted.pdf");
+  },
+  word_to_pdf_api: async function (file) {
+    return handleUpload(endPoints.word_ppt_to_pdf, file, "converted.pdf");
   },
 
   pdf_to_excel_api: async function (file) {
@@ -63,6 +68,9 @@ const modulesApi = {
     return handleUpload(endPoints.add_watermark, file, "watermarked.pdf");
   },
 };
+
+
+
 
 async function handleUpload(endpoint, file, defaultFileName) {
   try {
