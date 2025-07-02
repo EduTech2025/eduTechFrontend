@@ -10,7 +10,7 @@ import 'keen-slider/keen-slider.min.css';
 import GlassyProfileCard from '@/utils/glassy_profile_card';
 
 
-
+import ServiceSection from '@/components/service_section';
 const logos = [
   '/assets/brands/1.png',
   '/assets/brands/2.png',
@@ -141,47 +141,7 @@ const [paused, setPaused] = useState(false);
           </p>
         </div>
 
-        <div ref={sliderRef} className="keen-slider px-2">
-          {services.map((service, idx) => (
-            <motion.div
-              key={idx}
-              className="keen-slider__slide"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-            >
-              <div className="group relative rounded-xl overflow-hidden bg-zinc-900/60 border border-white/10 shadow-xl hover:shadow-purple-400/20 transition-all duration-300 hover:-translate-y-1 backdrop-blur-md">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  width={300}
-                  height={180}
-                  className=" rounded-t-xl transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-2 left-2 flex gap-1 flex-wrap">
-                  {service.tech.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="bg-purple-600/90 text-white text-[10px] px-2 py-0.5 rounded-full shadow-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="p-4 space-y-1">
-                  <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-                  <p className="text-xs text-gray-300 line-clamp-3">{service.description}</p>
-                  <Link
-                    href={service.link}
-                    className="inline-block text-purple-400 text-xs font-medium hover:underline"
-                  >
-                    View Service →
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <ServiceSection/>
       </section>
 
       <section className="py-20 px-6 text-white">

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import LandingOverlay from '../landing/landing';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
+import { usePathname } from 'next/navigation';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -17,6 +18,10 @@ export default function ClientRoot({ children }) {
     // Start showing navbar immediately after launch is triggered
     setNavbarShown(true);
   };
+
+   const pathname = usePathname();
+  const hideFooter = pathname.startsWith('/student_dashboard') || pathname.startsWith('/admin_dashboard');
+
 
   useEffect(() => {
     if (launched) {
@@ -50,8 +55,8 @@ export default function ClientRoot({ children }) {
         </motion.div>
       )} */}
       <Navbar/>
-          <main className="pt-16">{children}</main>
-          <Footer />
+          <main className='pt-16'>{children}</main>
+        {hideFooter ?null: <Footer />}
       
     </>
   );

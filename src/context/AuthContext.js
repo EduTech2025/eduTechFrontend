@@ -9,8 +9,10 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  
+  const [id, setId] = useState('');
+  const [uuid, setUUID] = useState('');
+  const [role, setRole] = useState('');
+
   const fetchUser = async () => {
     const token = getToken();
     
@@ -18,6 +20,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const resp = await auth.get_user(token);
       setEmail(resp.data.email);
+      setId(resp.data.id);
+      setUUID(resp.data.uuid);
+      setRole(resp.data?.is_superuser!=false?'admin':'user');
       setIsAuthenticated(true);
     } catch (error) {
       console.error("Failed to fetch user:", error);
@@ -28,6 +33,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     doLogout(); // removes token + redirects (you can customize this)
     setEmail('');
+    setId('');
+    setUUID('');
+    setRole('');
     setIsAuthenticated(false);
   };
 
@@ -38,8 +46,12 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{
       email,
+      id,
+      role,
+        uuid,
       isAuthenticated,
       logout,
+      setId,
       setEmail,
       setIsAuthenticated
     }}>

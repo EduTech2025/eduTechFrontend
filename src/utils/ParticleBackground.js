@@ -6,7 +6,6 @@ export default function SmogBackground() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    console.log('SmogBackground: STARTED');
 
     const canvas = canvasRef.current;
     if (!canvas) {
@@ -20,7 +19,6 @@ export default function SmogBackground() {
       return;
     }
 
-    console.log('SmogBackground: Canvas and context OK');
 
     let animationFrameId;
 
@@ -28,7 +26,6 @@ export default function SmogBackground() {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      console.log('SmogBackground: Canvas size:', canvas.width, 'x', canvas.height);
     };
     try {
       resizeCanvas();
@@ -46,7 +43,6 @@ export default function SmogBackground() {
         this.speedY = Math.random() * 0.5 + 0.2; // Slow upward (0.2-0.7px/frame)
         this.opacity = Math.random() * 0.15 + 0.05; // Darker, subtle (0.05-0.2)
         this.alphaChange = Math.random() * 0.002 - 0.001; // Slower opacity variation
-        console.log('SmogBackground: Smoke created: x=', this.x, 'y=', this.y, 'size=', this.size);
       }
 
       update() {
@@ -55,7 +51,6 @@ export default function SmogBackground() {
         if (this.y < -this.size) {
           this.y = canvas.height + this.size;
           this.x = Math.random() * canvas.width;
-          console.log('SmogBackground: Smoke respawned: x=', this.x, 'y=', this.y);
         }
       }
 
@@ -74,7 +69,6 @@ export default function SmogBackground() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        console.log('SmogBackground: Smoke drawn: x=', this.x, 'y=', this.y, 'size=', this.size);
       }
     }
 
@@ -92,7 +86,6 @@ export default function SmogBackground() {
           particle.update();
           particle.draw();
         });
-        console.log('SmogBackground: Frame rendered');
         animationFrameId = requestAnimationFrame(animate);
       } catch (err) {
         console.error('SmogBackground: Animation error:', err);
@@ -102,7 +95,6 @@ export default function SmogBackground() {
 
     // Cleanup
     return () => {
-      console.log('SmogBackground: Cleaning up');
       window.removeEventListener('resize', resizeCanvas);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
@@ -113,9 +105,6 @@ export default function SmogBackground() {
       className="fixed top-0 left-0 w-[100vw] h-[100vh]"
       style={{ zIndex: -1000, background: 'black' }}
     >
-      <div className="absolute top-0 left-0 w-[100vw] h-[100vh] flex items-center justify-center text-gray-500 text-4xl font-bold z-[-900]">
-        SMOG BACKGROUND
-      </div>
       <canvas
         ref={canvasRef}
         className="fixed top-0 left-0 w-[100vw] h-[100vh]"
