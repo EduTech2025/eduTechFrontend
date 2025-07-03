@@ -9,6 +9,7 @@ import {
 } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import { getToken } from '@/context/LocalStorage';
+import auth from "@/lib/auth_api";
 
 const ListboxWrapper = ({ children }) => (
     <div className="w-full backdrop-blur-md bg-white/10 dark:bg-white/5 border border-white/20 shadow-lg rounded-xl p-4">
@@ -22,23 +23,14 @@ export default function UserListBox() {
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(1);
     const router = useRouter();
+    const token = getToken();
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const token = getToken();
             try {
-                const res = await fetch('http://localhost:8000/api/users/', {
-                    headers: {
-                        Authorization: `Token ${token}`,
-                    },
-                });
-
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-
-                const data = await res.json();
-                console.log(data)
+                const res = await auth.get_all_users(token);
+                const data = res.data; // axios already parses JSON for you
+                console.log(data);
                 setUsers(data);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -47,6 +39,7 @@ export default function UserListBox() {
 
         fetchUsers();
     }, []);
+
 
     const paginatedUsers = useMemo(() => {
         const start = (page - 1) * ITEMS_PER_PAGE;
