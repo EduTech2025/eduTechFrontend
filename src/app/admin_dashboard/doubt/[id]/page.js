@@ -53,16 +53,42 @@ export default function App() {
 
     useEffect(() => {
         setChatId(chatId)
+
         const chatRef = ref(db, `chats/${chatId}/messages`);
-        onChildAdded(chatRef, (snapshot) => {
-            const msg = snapshot.val();
-            setMessages((prev) => [...prev, { ...msg, id: snapshot.key }]);
+
+        // 1. First fetch all current messages once and set them (without duplicates)
+        get(chatRef).then(snapshot => {
+            const initialMessages = [];
+            snapshot.forEach(child => {
+                initialMessages.push({ ...child.val(), id: child.key });
+            });
+            setMessages(initialMessages);
         });
 
-        const otherTypingRef = ref(db, `chats/${chatId}/typing/${receiverId}`);
-        onValue(otherTypingRef, (snap) => setTyping(snap.val()));
+        // 2. Now listen for new incoming messages only
+        const unsubscribe = onChildAdded(chatRef, (snapshot) => {
+            const newMsg = snapshot.val();
+            setMessages((prev) => {
+                const exists = prev.some((m) => m.id === snapshot.key);
+                if (!exists) {
+                    return [...prev, { ...newMsg, id: snapshot.key }];
+                }
+                return prev;
+            });
+        });
 
-        markMessagesRead().then(r=>console.log(r));
+        // 3. Typing status
+        const otherTypingRef = ref(db, `chats/${chatId}/typing/${receiverId}`);
+        const typingUnsub = onValue(otherTypingRef, (snap) => setTyping(snap.val()));
+
+        // 4. Mark as read
+        markMessagesRead().then(r => console.log(r));
+
+        // Optional: Clean up
+        return () => {
+            typingUnsub(); // removes typing listener
+            // No unsubscribe needed for `onChildAdded`, but you can if you refactor with `onValue` and `off`
+        };
     }, []);
 
     const handleTyping = (e) => {

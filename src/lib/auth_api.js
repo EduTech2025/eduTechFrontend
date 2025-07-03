@@ -5,6 +5,7 @@ const endPoints = {
   signup:"api/signup/",
   login:"api/login/",
   get_user:"api/user/",
+  get_all_user:"api/users/",
 }
 
 
@@ -49,6 +50,19 @@ const auth = {
       return { status: 500 }; 
     }
   },
+  get_all_users :async function (token) {
+    try {
+      return await api.get(endPoints.get_all_user, {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      return { status: 500 };
+    }
+  }
 };
 
 export default auth;
