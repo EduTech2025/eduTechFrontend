@@ -25,7 +25,7 @@ export default function Sidebar({ collapsed, toggleSidebar }) {
 
     const navLinks = [
         { label: 'Profile', icon: User, path: `${base}/profile` },
-        { label: 'Courses', icon: BookOpen, path: role === 'admin' ? `${base}/courses` : `${base}/courses`},
+        { label: 'Courses', icon: BookOpen, path:`${base}/courses` },
         {
             label: 'Doubt',
             icon: HelpCircle,
