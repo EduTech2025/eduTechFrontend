@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }) {
   return (
     <div className="flex h-[90vh] overflow-hidden">
       <Sidebar collapsed={collapsed} toggleSidebar={toggleSidebar} />
-      <main className="flex-1 p-2 overflow-hidden">
+      <main className="flex-1 p-2 overflow-auto">
         {children}
       </main>
     </div>

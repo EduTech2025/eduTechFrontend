@@ -38,22 +38,7 @@ export default function ClientRoot({ children }) {
 
   return (
     <>
-      {/* <AnimatePresence>
-        {!launched && <LandingOverlay onLaunch={handleLaunch} />}
-      </AnimatePresence>
 
-      {navbarShown && <Navbar animate={launched} />}
-
-      {contentShown && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-        >
-          <main className="pt-16">{children}</main>
-          <Footer />
-        </motion.div>
-      )} */}
       <Navbar/>
           <main className='pt-16'>{children}</main>
         {hideFooter ?null: <Footer />}

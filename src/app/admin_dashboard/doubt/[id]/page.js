@@ -14,6 +14,7 @@ import {
 } from 'firebase/database';
 import {useAuth} from "@/context/AuthContext";
 import '@/styles/globals.css'
+import courseApi from "@/lib/courses";
 
 const SendIcon = () => (
     <svg
@@ -114,11 +115,13 @@ export default function App() {
         await push(ref(db, `chats/${chatId}/messages`), newMessage);
         setInput('');
 
-        await fetch('http://localhost:8000/student-dash/save-message/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newMessage),
-        });
+
+        await  courseApi.save_message(newMessage);
+        // await fetch('http://localhost:8000/student-dash/save-message/', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(newMessage),
+        // });
     };
 
     const markMessagesRead = async () => {
@@ -133,11 +136,12 @@ export default function App() {
             }
         });
 
-        await fetch('http://localhost:8000/chat/mark-as-read/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ user_id: senderId }),
-        });
+        await courseApi.mark_as_read(senderId);
+        // await fetch('http://localhost:8000/chat/mark-as-read/', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ user_id: senderId }),
+        // });
     };
 
     return (

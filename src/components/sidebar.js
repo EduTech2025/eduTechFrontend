@@ -21,32 +21,31 @@ export default function Sidebar({ collapsed, toggleSidebar }) {
 
     const isActive = (href) => pathname === href;
 
-    // Base path depending on role
     const base = role === 'admin' ? '/admin_dashboard' : '/student_dashboard';
 
     const navLinks = [
         { label: 'Profile', icon: User, path: `${base}/profile` },
-        { label: 'Courses', icon: BookOpen, path: `${base}/course` },
+        { label: 'Courses', icon: BookOpen, path: role === 'admin' ? `${base}/courses` : `${base}/courses`},
         {
             label: 'Doubt',
             icon: HelpCircle,
             path: role === 'admin' ? '/admin_dashboard/doubt' : '/student_dashboard/doubt',
         },
-        {
-            label: 'Student Showcase',
-            icon: Trophy,
-            path: '/student_dashboard/student_showcase', // same for both roles?
-        },
-        {
-            label: 'Project',
-            icon: FolderKanban,
-            path: '/student_dashboard/student_projects',
-        },
-        {
-            label: 'Feedback',
-            icon: MessageSquare,
-            path: '/student_dashboard/feedback',
-        },
+        // {
+        //     label: 'Student Showcase',
+        //     icon: Trophy,
+        //     path: '/student_dashboard/student_showcase', // same for both roles?
+        // },
+        // {
+        //     label: 'Project',
+        //     icon: FolderKanban,
+        //     path: '/student_dashboard/student_projects',
+        // },
+        // {
+        //     label: 'Feedback',
+        //     icon: MessageSquare,
+        //     path: '/student_dashboard/feedback',
+        // },
     ];
 
     return (

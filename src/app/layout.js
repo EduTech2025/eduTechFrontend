@@ -12,10 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ fontFamily: 'Anta-Regular' }}>
-
-      <GrokStarBackground />
-          <ClickSpark
+      <body style={{ fontFamily: 'Anta-Regular',background: 'black' }}>
+           <ClickSpark
               sparkColor='#fff'
               sparkSize={10}
               sparkRadius={15}

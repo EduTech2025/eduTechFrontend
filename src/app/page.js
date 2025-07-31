@@ -4,20 +4,15 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import TestimonialScroller from '@/components/testimonial';
+import {TestimonialScroller,BrandLeadScroller} from '@/components/testimonial';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import GlassyProfileCard from '@/utils/glassy_profile_card';
 
 
 import ServiceSection from '@/components/service_section';
-const logos = [
-  '/assets/brands/1.png',
-  '/assets/brands/2.png',
-  '/assets/brands/3.png',
-  '/assets/brands/4.png',
-  '/assets/brands/5.png',
-];
+import ProductCarousel from "@/utils/scrolling_product";
+
 
 const team = [
   {
@@ -25,6 +20,9 @@ const team = [
     role: 'Lead Instructor',
     bio: '10+ years in tech education and software engineering.',
     image: 'https://cdn.pixabay.com/photo/2024/02/20/08/40/cartoon-8584938_1280.jpg',
+    linkdin: 'https://linkedin.com/in/alicejohnson',
+    instagram: 'https://instagram.com/alicejohnson',
+
   },
   {
     name: 'Bob Smith',
@@ -97,196 +95,98 @@ const [paused, setPaused] = useState(false);
 
   return (
     <main className=" text-gray-800 overflow-x-hidden">
-      <section className="min-h-screen  relative overflow-hidden">
-        <div className="absolute inset-0 opacity-100 z-0">
-          <Image
-            src="/assets/DeSilentOrder_DarkLogo_new.png"
-            fill
-            style={{ objectFit: "contain" }}
-            alt="Background"
-            className="opacity-60 z-0"
-          />
-        </div>
-      </section>
+    <section className="min-h-screen bg-black text-white relative overflow-hidden px-20 md:px-30 py-20 flex items-center justify-between">
+            {/* Left Content */}
+            <div className="z-10 w-[60%]">
+              <h1 className="text-2xl md:text-6xl font-extrabold leading-tight mb-6">
+                ONE STOP SOLUTION <br /> FOR ALL YOUR PROBLEMS
+              </h1>
 
-      <section className="py-20 text-white px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
-            <p className="text-white text-lg">
-              We are a passionate team of educators and developers committed to bridging the tech gap through hands-on learning and world-class instruction and provide you with best software solution and services. Our mission is to prepare you for the demands of tomorrow’s job market today.
-            </p>
-          </motion.div>
+              <p className="text-lg md:text-xl text-gray-300 mb-10">
+                We turn creative ambition into beautiful, functional user experiences.
+                <br />
+                Let’s build the future together.
+              </p>
 
-          <motion.img
-            src="https://static.vecteezy.com/system/resources/previews/046/449/468/non_2x/a-man-in-a-hooded-cloak-with-a-sword-on-transparent-background-free-png.png"
-            alt="3D Assassin"
-            className="w-full h-auto rounded-lg shadow-xl"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          />
-        </div>
-      </section>
+              <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold px-8 py-3 rounded-full hover:from-pink-400 hover:to-purple-500 transition duration-300">
+                Get Started
+              </button>
+            </div>
 
-      <section className="py-20 px-6  text-white">
-        <div className="max-w-7xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Our Services</h2>
-          <p className="text-gray-400 text-lg">
-            Empowering you with tailored tech solutions built for the future.
-          </p>
-        </div>
-
-        <ServiceSection/>
-      </section>
-
-      <section className="py-20 px-6 text-white">
-        <div className="max-w-7xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Our Products</h2>
-          <p className="text-gray-400 text-lg">
-            Explore our tools designed to simplify and accelerate your workflow.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          {Array(4).fill({
-            image: "/assets/service/app-development.png",
-            tech: ["React", "PDF.js"],
-            title: "PDF Editor",
-            description: "Edit, merge, split, and annotate PDF files in a user-friendly interface.",
-            link: "/products/pdf-editor",
-          }).map((product, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative group rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/30 transition hover:-translate-y-1 backdrop-blur-md"
-            >
-              <Image
-                src={product.image}
-                alt={product.title}
-                width={300}
-                height={300}
-                className="object-cover group-hover:scale-105 transition-transform duration-500 w-full"
+            {/* Right Side Illustration */}
+            <div className="hidden md:block absolute right-0 top-0 w-[50%] max-w-[600px] z-0">
+              <img
+                src="/assets/home/hero_section.png"
+                alt="3D Figure"
+                className="w-full object-contain"
               />
-              <div className="absolute top-3 left-3 flex gap-2 flex-wrap">
-                {product.tech.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="bg-purple-600/80 text-white text-xs px-2 py-0.5 rounded-full shadow"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="p-5 space-y-2">
-                <h3 className="text-xl font-semibold text-white">{product.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {product.description}
-                </p>
-                <Link
-                  href={product.link}
-                  className="inline-block text-purple-400 text-sm font-medium hover:underline mt-1"
-                >
-                  View Product →
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/products"
-            className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium px-6 py-3 rounded-full transition duration-300 shadow-lg"
-          >
-            View All Products
-          </Link>
-        </div>
-        </section>
-    
-      
+            
+          </section>
 
-      <section className="py-16  overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-white text-2xl font-semibold text-center mb-10">
-          Trusted by Leading Brands
-        </h2>
-
-        {/* Carousel Wrapper */}
-        <div
-          className="overflow-hidden group"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
+          <section
+          className="bg-fixed bg-center bg-cover min-h-screen"
+          style={{
+            backgroundImage: "url('/assets/background.png')",
+          }}
         >
-          <div
-            className={`flex gap-10 w-max will-change-transform ${
-              paused ? '' : 'animate-scrollRight'
-            }`}
-          >
-            {[...logos, ...logos].map((logo, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 w-40 h-20 flex items-center justify-center bg-white/10 border border-white/20 rounded-xl shadow-lg backdrop-blur-md transition"
-              >
-                <img
-                  src={logo}
-                  alt={`Brand ${i + 1}`}
-                  className="max-h-12 object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+  <div className=" bg-opacity-60  w-full">
+    <BrandLeadScroller />
+  </div>
+</section>
+  <div className=" bg-opacity-70 w-full">
+    <ServiceSection />
+  </div>
 
-      {/* Scroll Animation */}
-      <style jsx>{`
-        @keyframes scrollRight {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
+  <div className=" bg-opacity-60  w-full">
+    <TestimonialScroller />
+  </div>
 
-        .animate-scrollRight {
-          animation: scrollRight 30s linear infinite;
-        }
-      `}</style>
-    </section>
+  <div className=" bg-opacity-70  w-full">
+    <ProductCarousel />
+  </div>
 
 
-
-      <section className="pt-10 px-6 ">
+      <section className="pt-4 px-6 ">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl text-white font-bold mb-12">Meet the Team</h2>
-          <div className='flex justify-center items-center'>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {team.map((member, index) => (
-                <GlassyProfileCard
-                  key={index}
-                  name={member.name}
-                  bio={member.bio}
-                  designation={member.role}
-                  imageUrl={member.image}
-                  linkedinUrl="https://linkedin.com"
-                  instagramUrl="https://instagram.com"
-                  email="info@example.com"
-                />
+          <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center w-full max-w-2xl ">
+              {team.slice(0, 1).map((member, index) => (
+                  <GlassyProfileCard
+                      key={index}
+                      name={member.name}
+                      bio={member.bio}
+                      designation={member.role}
+                      imageUrl={member.image}
+                      linkedinUrl="https://linkedin.com"
+                      instagramUrl="https://instagram.com"
+                      email="info@example.com"
+                  />
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-center items-center mt-10">
+            <div className="grid grid-cols-4 md:grid-cols-4 gap-8 w-full">
+              {team.slice(1).map((member, index) => (
+                  <GlassyProfileCard
+                      key={index + 1}
+                      name={member.name}
+                      bio={member.bio}
+                      designation={member.role}
+                      imageUrl={member.image}
+                      linkedinUrl="https://linkedin.com"
+                      instagramUrl="https://instagram.com"
+                      email="info@example.com"
+                  />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <TestimonialScroller />
+
     </main>
   );
 }
