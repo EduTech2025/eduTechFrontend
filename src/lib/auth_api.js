@@ -52,12 +52,13 @@ const auth = {
   },
   get_all_users :async function (token) {
     try {
-      return await api.get(endPoints.get_all_user, {
+      const response = await api.get(endPoints.get_all_user, {
         headers: {
           'Authorization': `Token ${token}`,
           'Content-Type': 'application/json',
         },
       });
+      return response;
     } catch (error) {
       console.error('Error fetching users:', error);
       return { status: 500 };

@@ -13,6 +13,8 @@ import {
 } from 'firebase/database';
 import '@/styles/globals.css';
 import {useAuth} from "@/context/AuthContext";
+import courses from "@/lib/courses";
+import courseApi from "@/lib/courses";
 
 const SendIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -90,11 +92,7 @@ export default function App() {
     await push(ref(db, `chats/${chatId}/messages`), newMessage);
     setInput('');
 
-    await fetch('http://localhost:8000/student-dash/save-message/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newMessage),
-    });
+    await courseApi.save_message(newMessage);
   };
 
   const markMessagesRead = async () => {
@@ -107,15 +105,16 @@ export default function App() {
       }
     });
 
-    await fetch('http://localhost:8000/chat/mark-as-read/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: senderId }),
-    });
+    await  courseApi.mark_as_read(senderId);
+    // await fetch('http://localhost:8000/chat/mark-as-read/', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ user_id: senderId }),
+    // });
   };
 
   return (
-      <div className="flex flex-col h-[90vh] text-white max-w-4xl mx-auto font-sans">
+      <div className="flex flex-col h-[85vh] text-white max-w-4xl mx-auto font-sans">
         <header className="p-4 border-b border-white/10 shrink-0">
           <h1 className="text-2xl font-bold text-center">Doubts Chat</h1>
         </header>

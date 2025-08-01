@@ -2,14 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { Mail, Linkedin, Instagram } from "lucide-react";
 
 export default function GlassyProfileCard({
-    name,
-    bio,
-    designation,
-    imageUrl,
-    linkedinUrl,
-    instagramUrl,
-    email,
-}) {
+                                              name,
+                                              bio,
+                                              designation,
+                                              imageUrl,
+                                              linkedinUrl,
+                                              instagramUrl,
+                                              email,
+                                          }) {
     const [isHovered, setIsHovered] = useState(false);
     const timeoutRef = useRef(null);
     const popupRef = useRef(null);
@@ -49,15 +49,22 @@ export default function GlassyProfileCard({
             <div
                 onClick={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                className="cursor-pointer w-72 h-72 flex flex-col items-center p-4 bg-transparent rounded-2xl shadow-lg relative z-10"
+                className="cursor-pointer flex flex-col items-center justify-start"
             >
-                <img
-                    src={imageUrl}
-                    alt={name}
-                    className="w-24 h-24 rounded-full object-cover shadow-lg z-10"
-                />
-                <h3 className="mt-4 text-white font-semibold text-lg">{name}</h3>
-                <p className="text-sm text-gray-300">{bio}</p>
+                {/* Avatar */}
+                <div className="relative z-10">
+                    <img
+                        src={imageUrl}
+                        alt={name}
+                        className="w-24 h-24 rounded-full object-cover shadow-lg border-4 border-transparent"
+                    />
+                </div>
+
+                {/* Glass card */}
+                <div className="-mt-6 bg-purple-200/10  backdrop-blur-md border border-purple-400/20 text-center px-4 py-3 rounded-xl w-60 shadow-md z-0">
+                    <h3 className="text-white pt-6 font-semibold text-sm">{name}</h3>
+                    <p className="text-xs text-gray-300 mt-1">{bio}</p>
+                </div>
             </div>
 
             {/* Popup Overlay */}
@@ -69,34 +76,34 @@ export default function GlassyProfileCard({
                 >
                     <div
                         ref={popupRef}
-                        className="relative perspective-[1000px] w-80 mx-auto group" // group added
+                        className="relative perspective-[1000px] w-80 mx-auto group"
                     >
-                        {/* Floating Image with hover animation */}
-                        <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-170 rounded-full">
+                        {/* Floating Image */}
+                        <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-110 rounded-full">
                             <img
                                 src={imageUrl}
                                 alt={name}
-                                className="w-32 h-32 rounded-full object-cover shadow-xl"
+                                className="w-32 h-32 rounded-full object-cover shadow-xl shadow-purple-500/30"
                             />
                         </div>
 
                         {/* Glass Card */}
                         <div
-                            className="relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl p-8 pt-20 group-hover:pt-30 text-center text-white transform-gpu transition-transform duration-500 hover:rotate-x-35"
+                            className="relative bg-purple-300/10 backdrop-blur-lg border border-purple-300/20 rounded-2xl shadow-2xl p-8 pt-20 group-hover:pt-30 text-center text-white transform-gpu transition-transform duration-500 hover:rotate-x-35"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <h3 className="text-2xl font-bold">{name}</h3>
+                            <h3 className="text-2xl font-bold text-white">{name}</h3>
                             <p className="mt-2 text-gray-300">{bio}</p>
                             <p className="mt-1 text-gray-400 italic">{designation}</p>
                             <div className="flex justify-center gap-6 mt-6">
                                 <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                    <Linkedin className="w-6 h-6 hover:text-blue-500" />
+                                    <Linkedin className="w-6 h-6 hover:text-purple-400" />
                                 </a>
                                 <a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                    <Instagram className="w-6 h-6 hover:text-pink-500" />
+                                    <Instagram className="w-6 h-6 hover:text-purple-400" />
                                 </a>
                                 <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" aria-label="Email">
-                                    <Mail className="w-6 h-6 hover:text-red-400" />
+                                    <Mail className="w-6 h-6 hover:text-purple-400" />
                                 </a>
                             </div>
                         </div>

@@ -102,7 +102,7 @@ export default function Navbar({ animate }) {
 
   return (
 
-    <nav className="w-full py-4 fixed bg-black z-50 ">
+    <nav className="w-full py-2 fixed bg-black z-50 ">
       <motion.div
         className="relative w-full max-w-screen-2xl"
         initial={animate ? {
@@ -146,29 +146,24 @@ export default function Navbar({ animate }) {
             <div className="hidden md:flex space-x-8 items-center justify-center flex-1 gap-4">
               {navItems.map((item) =>
                 item.hasDropdown ? (
-                  <Link key={item.name}
-                    href={item.path}
-                    passHref
-                    style={{ fontFamily: 'Anta-Regular' }}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className="relative group">
-                      <button
-                        className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white  hover:bg-white/10'}`}
-                      >
-                        {item.name}
-                        {/* <ChevronDown size={18} className="ml-1" /> */}
-                      </button>
-                      <div className="absolute left-0 mt-2 w-56 bg-[#1a1a1a] text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
-                        {serviceItems.map((service) => (
-                          <Link  href={service.path} passHref className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
-                            {service.icon}
-                            {service.name}
-                          </Link>
-                        ))}
-                      </div>
+                  <div key={item.name} style={{ fontFamily: 'Anta-Regular' }} className="relative group">
+                    <button
+                      className={`flex items-center text-base font-medium px-6 py-1 rounded-2xl transition duration-200 ${isActive('/services') ? 'bg-white text-black' : 'text-white  hover:bg-white/10'}`}
+                      onClick={() => setIsOpen(false)}
+                      type="button"
+                    >
+                      {item.name}
+                      {/* <ChevronDown size={18} className="ml-1" /> */}
+                    </button>
+                    <div className="absolute left-0 mt-2 w-56 bg-[#1a1a1a] text-white rounded-xl  shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200 z-50">
+                      {serviceItems.map((service) => (
+                        <Link key={service.name} href={service.path} passHref className="flex items-center gap-2 px-5 py-3 text-sm font-medium transition duration-300 hover:bg-white/20 hover:text-blue-200">
+                          {service.icon}
+                          {service.name}
+                        </Link>
+                      ))}
                     </div>
-                  </Link>
+                  </div>
                 ) : item.hasResourceDropdown ? (
                   <div style={{ fontFamily: 'Anta-Regular' }} key={item.name} className=" group">
                     <button
@@ -192,7 +187,7 @@ export default function Navbar({ animate }) {
                               {category.children.map((link) => (
                                 <li key={link.name}>
                                   <div
-                                    className="block px-2 py-1 rounded hover:bg-red-500 hover:text-white transition duration-200"
+                                    className="block px-2 py-1 rounded hover:bg-purple-500 hover:text-white transition duration-200"
                                   >
                                     {link.name}
                                   </div>
@@ -300,7 +295,7 @@ export default function Navbar({ animate }) {
                             key={service.name}
                             href={service.path}
                             className={`block px-2 py-1 text-sm transition duration-200 ${pathname === service.path
-                              ? 'text-red-500 font-semibold'
+                              ? 'text-purple-500 font-semibold'
                               : 'text-white hover:text-blue-300'
                               }`}
                             onClick={() => setIsOpen(false)}
