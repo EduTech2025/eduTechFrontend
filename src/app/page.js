@@ -13,43 +13,53 @@ import GlassyProfileCard from '@/utils/glassy_profile_card';
 import ServiceSection from '@/components/service_section';
 import ProductCarousel from "@/utils/scrolling_product";
 
-
 const team = [
   {
-    name: 'Alice Johnson',
-    role: 'Lead Instructor',
-    bio: '10+ years in tech education and software engineering.',
-    image: 'https://cdn.pixabay.com/photo/2024/02/20/08/40/cartoon-8584938_1280.jpg',
+    name: 'Harsh Yadav',
+    role: 'CEO / Founder',
+    bio: 'Entrepreneur focused on startups, growth, and building impactful leadership strategies.',
+    image: '/assets/home/harsh.jpeg',
+    email: 'info@example.com',
     linkdin: 'https://linkedin.com/in/alicejohnson',
     instagram: 'https://instagram.com/alicejohnson',
-
   },
   {
-    name: 'Bob Smith',
-    role: 'Curriculum Designer',
-    bio: 'Specialist in creating interactive, outcome-based learning.',
-    image: 'https://cdn.pixabay.com/photo/2023/04/21/16/22/ai-generated-7942209_1280.jpg',
+    name: 'Wasif',
+    role: 'CTO / Co-Founder',
+    bio: 'Expert in AI, cybersecurity, and machine learning with strong tech leadership skills.',
+    image: '/assets/home/harsh.jpeg',
+    email: 'info@example.com',
+    linkdin: 'https://linkedin.com/in/alicejohnson',
+    instagram: 'https://instagram.com/alicejohnson',
   },
   {
-    name: 'Carla Reyes',
-    role: 'Frontend Developer',
-    bio: 'Expert in UX/UI and building responsive interfaces.',
-    image: 'https://cdn.pixabay.com/photo/2024/02/23/05/39/ai-generated-8591339_1280.jpg',
+    name: 'Himasnhu Swami',
+    role: 'CTO / Co-Founder',
+    bio: 'App, web, and AI developer with a passion for scalable tech solutions with leadership skills.',
+    image: '/assets/home/harsh.jpeg',
+    email: 'info@example.com',
+    linkdin: 'https://linkedin.com/in/alicejohnson',
+    instagram: 'https://instagram.com/alicejohnson',
   },
   {
-    name: 'David Lin',
-    role: 'Backend Engineer',
-    bio: 'Server architecture and database wizard.',
-    image: 'https://static.vecteezy.com/system/resources/previews/046/449/468/non_2x/a-man-in-a-hooded-cloak-with-a-sword-on-transparent-background-free-png.png',
+    name: 'Karan Negi',
+    role: 'CMO / Co-Founder',
+    bio: 'DevOps and automation expert with TCS background and deployment experience.',
+    image: '/assets/home/harsh.jpeg',
+    email: 'info@example.com',
+    linkdin: 'https://linkedin.com/in/alicejohnson',
+    instagram: 'https://instagram.com/alicejohnson',
   },
   {
-    name: 'Eva Tan',
-    role: 'Product Manager',
-    bio: 'Bringing ideas to life with agile methodology.',
-    image: 'https://png.pngtree.com/png-clipart/20250108/original/pngtree-businesswoman-working-on-laptop-png-image_19319571.png',
+    name: 'Sanjeev Kumar',
+    role: 'CMO / Co-Founder',
+    bio: 'Marketing and consulting strategist focused on business growth and partnerships.',
+    image: '/assets/home/harsh.jpeg',
+    email: 'info@example.com',
+    linkdin: 'https://linkedin.com/in/alicejohnson',
+    instagram: 'https://instagram.com/alicejohnson',
   },
 ];
-
 
 const services = [
   {
@@ -125,28 +135,13 @@ const [paused, setPaused] = useState(false);
             
           </section>
 
-          <section
-          className="bg-fixed bg-center bg-cover min-h-screen"
-          style={{
-            backgroundImage: "url('/assets/background.png')",
-          }}
-        >
-  <div className=" bg-opacity-60  w-full">
     <BrandLeadScroller />
-  </div>
-</section>
-  <div className=" bg-opacity-70 w-full">
     <ServiceSection />
-  </div>
-
-  <div className=" bg-opacity-60  w-full">
+  
     <TestimonialScroller />
-  </div>
-
-  <div className=" bg-opacity-70  w-full">
+  
     <ProductCarousel />
-  </div>
-
+  
 
       <section className="pt-4 px-6 ">
         <div className="max-w-6xl mx-auto text-center">

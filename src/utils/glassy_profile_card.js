@@ -56,13 +56,14 @@ export default function GlassyProfileCard({
                     <img
                         src={imageUrl}
                         alt={name}
-                        className="w-24 h-24 rounded-full object-cover shadow-lg border-4 border-transparent"
+                        className="w-30 h-30 rounded-full object-contain shadow-lg border-4 border-transparent"
                     />
                 </div>
 
                 {/* Glass card */}
                 <div className="-mt-6 bg-purple-200/10  backdrop-blur-md border border-purple-400/20 text-center px-4 py-3 rounded-xl w-60 shadow-md z-0">
                     <h3 className="text-white pt-6 font-semibold text-sm">{name}</h3>
+                    <h3 className="text-white pt-1 font-semibold text-sm">{designation}</h3>
                     <p className="text-xs text-gray-300 mt-1">{bio}</p>
                 </div>
             </div>

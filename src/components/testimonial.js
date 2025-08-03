@@ -59,14 +59,14 @@ export function TestimonialScroller() {
   }, []);
 
   return (
-      <div className="relative py-16 bg-gradient-to-b  accent-purple-600 to-black overflow-hidden">
+      <div className="relative py-13 bg-gradient-to-b  accent-purple-600 to-black overflow-hidden">
         <h2 className="text-white text-4xl font-extrabold text-center mb-12 tracking-tight">
           What Our Clients Say
         </h2>
 
         <div
             ref={containerRef}
-            className="flex gap-8 px-8 overflow-x-auto no-scrollbar"
+            className="flex gap-8 h-auto px-8 overflow-x-auto no-scrollbar"
         >
           {[...testimonials, ...testimonials].map((t, idx) => (
               <div

@@ -8,49 +8,49 @@ const productCategories = [
     {
         title: 'PDF Editor',
         link: '/products/pdf-editor',
-        icon: '/illustrations/pdf-editor.svg',
+        icon: '/assets/home/pdf.png',
+        comingSoon: false,
     },
     {
-        title: 'Interview Preparation',
+        title: 'Interview Simulator',
         link: '/products/interview-preparation',
-        icon: '/illustrations/interview.svg',
+        icon: '/assets/home/inter-talk.png',
+        comingSoon: true,
     },
     {
         title: 'CRM',
         link: '/products/crm',
-        icon: '/illustrations/crm.svg',
+        icon: '/assets/home/crm.png',
+        comingSoon: true,
     },
     {
         title: 'Website Ecommerce',
         link: '/products/website-ecommerce',
-        icon: '/illustrations/ecommerce.svg',
+        icon: '/assets/home/ecommerce.png',
+        comingSoon: true,
     },
     {
         title: 'Templates',
-        link: '/products/templates',
-        icon: '/illustrations/templates.svg',
+        icon: '/assets/home/templates.png',
+        comingSoon: true,
     },
     {
-        title: 'Templates',
-        link: '/products/templates',
-        icon: '/illustrations/templates.svg',
+        title: 'Business Tools',
+        icon: '/assets/home/business.png',
+        comingSoon: true,
     },
     {
-        title: 'Templates',
-        link: '/products/templates',
-        icon: '/illustrations/templates.svg',
+        title: 'Finance Tracker',
+        icon: '/assets/home/finance.png',
+        comingSoon: true,
     },
 ];
 
 export default function ProductCategoriesCarousel() {
     const scrollRef = useRef(null);
     const [centerIndex, setCenterIndex] = useState(0);
-    const [hoverIndex, setHoverIndex] = useState(null);
 
     const getScale = (i) => {
-        // if (hoverIndex === i) return 0.9;
-        // if (hoverIndex !== null) return 0.85; // all others shrink slightly when one is hovered
-
         const diff = Math.abs(centerIndex - i);
         if (diff === 0) return 1.1;
         if (diff === 1) return 0.95;
@@ -61,7 +61,9 @@ export default function ProductCategoriesCarousel() {
     useEffect(() => {
         const handleScroll = () => {
             if (!scrollRef.current) return;
-            const children = Array.from(scrollRef.current.children[0].children);
+            const children = Array.from(
+                scrollRef.current.children[0].children
+            );
             let closestIndex = 0;
             let closestDistance = Infinity;
 
@@ -101,15 +103,13 @@ export default function ProductCategoriesCarousel() {
                 <div className="flex gap-6 items-center w-max">
                     {productCategories.map((category, idx) => {
                         const scale = getScale(idx);
+                        const isComingSoon = category.comingSoon;
 
                         return (
                             <div
                                 key={category.title + '-' + idx}
                                 className="snap-center flex-shrink-0"
-                                style={{
-                                    width: '260px', // Fixed layout width
-                                    marginRight: '1rem',
-                                }}
+                                style={{ width: '260px', marginRight: '1rem' }}
                             >
                                 <motion.div
                                     className="w-full h-full"
@@ -119,23 +119,38 @@ export default function ProductCategoriesCarousel() {
                                         zIndex: scale > 1 ? 10 : 1,
                                     }}
                                 >
-                                    <Link href={category.link} className="block h-full">
-                                        <div className="relative group rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/30 backdrop-blur-md transition-all p-6 h-full flex flex-col items-center justify-center text-center hover:bg-purple-600/10">
+                                    {isComingSoon ? (
+                                        <div className="relative group rounded-2xl overflow-hidden bg-gray-800/40 border border-white/10 shadow-md backdrop-blur-md p-6 h-full flex flex-col items-center justify-center text-center cursor-not-allowed">
+                                            <div className="absolute top-2 right-2 bg-yellow-500 text-black text-xs font-semibold px-2 py-0.5 rounded">
+                                                Coming Soon
+                                            </div>
                                             <img
                                                 src={category.icon}
                                                 alt={category.title}
-                                                className="w-16 h-16 mb-4 object-contain transition-transform duration-300 group-hover:scale-110"
+                                                className="w-full h-24 mb-4 object-contain opacity-50"
                                             />
-                                            <h3 className="text-lg font-semibold text-white group-hover:text-purple-200">
+                                            <h3 className="text-lg font-semibold text-gray-300">
                                                 {category.title}
                                             </h3>
                                         </div>
-                                    </Link>
+                                    ) : (
+                                        <Link href={category.link} className="block h-full">
+                                            <div className="relative group rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/30 backdrop-blur-md transition-all p-6 h-full flex flex-col items-center justify-center text-center hover:bg-purple-600/10">
+                                                <img
+                                                    src={category.icon}
+                                                    alt={category.title}
+                                                    className="w-full h-24 mb-4 object-contain transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                                <h3 className="text-lg font-semibold text-white group-hover:text-purple-200">
+                                                    {category.title}
+                                                </h3>
+                                            </div>
+                                        </Link>
+                                    )}
                                 </motion.div>
                             </div>
                         );
                     })}
-
                 </div>
             </div>
 
