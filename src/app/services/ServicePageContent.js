@@ -7,43 +7,7 @@ import { Code, Smartphone, Palette } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// --- Projects ---
-
-const webProjects = [
-  {
-    image: '/assets/service/web-development.png',
-    link: '#',
-    tech: ['Next.js', 'Tailwind CSS']
-  },
-  {
-    image: '/assets/service/web-development.png',
-    link: '#',
-    tech: ['React', 'Stripe', 'Node.js']
-  },
-  {
-    image: '/assets/service/web-development.png',
-    link: '#',
-    tech: ['HTML5', 'CSS3', 'GSAP']
-  }
-];
-
-const appProjects = [
-  {
-    image: '/assets/service/app-development.png',
-    link: '#',
-    tech: ['Flutter', 'Firebase']
-  },
-  {
-    image: '/assets/service/app-development.png',
-    link: '#',
-    tech: ['React Native', 'GraphQL']
-  },
-  {
-    image: '/assets/service/app-development.png',
-    link: '#',
-    tech: ['Next.js', 'Stripe']
-  }
-];
+// --- Projects & Tech Logos ---
 
 const webTechLogos = [
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
@@ -66,7 +30,41 @@ const appTechLogos = [
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg'
 ];
 
+const shopifyTechLogos = [
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/shopify/shopify-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-plain.svg'
+];
+
 const uiuxTechTags = ['Design Systems', 'Micro-Interactions', 'Dark Mode', 'Mobile-first', 'Accessibility'];
+
+const tabContent = {
+  web: {
+    title: 'Web Development',
+    icon: <Code size={32} className="text-purple-400" />,
+    description:
+      'We create fast, scalable, and visually stunning websites using modern technologies like Next.js, Tailwind, and headless CMS.',
+    cta: 'Get in Touch',
+    logos: webTechLogos
+  },
+  app: {
+    title: 'App Development',
+    icon: <Smartphone size={32} className="text-purple-400" />,
+    description:
+      'From scalable cross-platform apps to native experiences, we build engaging mobile applications tailored to your business needs.',
+    cta: 'Start Your App',
+    logos: appTechLogos
+  },
+  shopify: {
+    title: 'Shopify Development',
+    icon: <Palette size={32} className="text-purple-400" />,
+    description:
+      'We build high-converting Shopify stores, custom themes, and subscription apps using Liquid, GraphQL, and Tailwind CSS.',
+    cta: 'Launch Your Store',
+    logos: shopifyTechLogos
+  }
+};
 
 // --- Component ---
 export default function ServicesPageContent() {
@@ -76,7 +74,7 @@ export default function ServicesPageContent() {
   const [activeTab, setActiveTab] = useState('web');
 
   useEffect(() => {
-    if (['web', 'app', 'uiux','shopify'].includes(tabParam || '')) {
+    if (['web', 'app', 'uiux', 'shopify'].includes(tabParam || '')) {
       setActiveTab(tabParam);
     }
   }, [tabParam]);
@@ -90,27 +88,11 @@ export default function ServicesPageContent() {
     { key: 'web', label: 'Web Development', icon: <Code size={20} /> },
     { key: 'app', label: 'App Development', icon: <Smartphone size={20} /> },
     { key: 'uiux', label: 'UI/UX Design', icon: <Palette size={20} /> },
-    { key: 'shopify', label: 'Shopify', icon: <Palette size={20} /> },
+    { key: 'shopify', label: 'Shopify', icon: <Palette size={20} /> }
   ];
 
-  const shopifyProjects = [
-  {
-    title: "Fashion Store",
-    image: "/assets/projects/fashion-shop.png",
-    link: "/projects/fashion-store",
-    tech: ["Shopify", "Liquid", "Tailwind"],
-  },
-  {
-    title: "Subscription App",
-    image: "/assets/projects/subscription.png",
-    link: "/projects/subscription-app",
-    tech: ["Shopify", "GraphQL", "App Proxy"],
-  },
-];
-
-
   return (
-    <main className="min-h-screen  text-white px-6 py-6 font-sans">
+    <main className="min-h-screen text-white px-6 py-6 font-sans">
       {/* Tabs */}
       <div className="flex justify-center mb-8 gap-6">
         {tabs.map((tab) => (
@@ -137,7 +119,6 @@ export default function ServicesPageContent() {
             transition={{ duration: 0.8 }}
             className="space-y-16"
           >
-            {/* Intro */}
             <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-12">
               <Image
                 src="/assets/service/ui.png"
@@ -164,7 +145,6 @@ export default function ServicesPageContent() {
               </div>
             </div>
 
-            {/* Middle */}
             <div className="max-w-5xl mx-auto text-center py-10">
               <h3 className="text-3xl font-semibold mb-4">Design That Thinks Ahead</h3>
               <p className="text-gray-300 text-base mb-8">
@@ -182,7 +162,6 @@ export default function ServicesPageContent() {
               </div>
             </div>
 
-            {/* CTA */}
             <div className="text-center max-w-3xl mx-auto">
               <h3 className="text-2xl font-bold">UX That Amplifies Your Brand</h3>
               <p className="text-sm text-gray-300 mt-3">
@@ -196,10 +175,8 @@ export default function ServicesPageContent() {
               </Link>
             </div>
           </motion.section>
-        ) : activeTab=='shopify'?(<><div></div></>): (
-          <>
-            {/* Common Header */}
-            <div className="text-center flex p-4 gap-10 justify-between flex-row items-center ">
+        ) : (
+          <div className="text-center flex p-4 gap-10 justify-between flex-row items-center">
             <motion.section
               key={activeTab}
               initial={{ opacity: 0, y: -20 }}
@@ -209,41 +186,19 @@ export default function ServicesPageContent() {
             >
               <div className="flex-1 space-y-4">
                 <div className="flex items-center justify-center gap-3">
-                  {activeTab === 'web' ? (
-                    <Code size={32} className="text-purple-400" />
-                  ) : (
-                    <Smartphone size={32} className="text-purple-400" />
-                  )}
-                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-                    {activeTab === 'web' ? 'Web Development' : 'App Development'}
-                  </h1>
+                  {tabContent[activeTab].icon}
+                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{tabContent[activeTab].title}</h1>
                 </div>
-                <p className="text-gray-300 leading-relaxed text-base">
-                  {activeTab === 'web'
-                    ? 'We create fast, scalable, and visually stunning websites using modern technologies like Next.js, Tailwind, and headless CMS.'
-                    : 'From scalable cross-platform apps to native experiences, we build engaging mobile applications tailored to your business needs.'}
-                </p>
+                <p className="text-gray-300 leading-relaxed text-base">{tabContent[activeTab].description}</p>
                 <Link
                   href="/contact"
                   className="inline-block mt-4 px-6 py-2 bg-purple-600 text-white rounded-full text-sm hover:bg-purple-700 transition"
                 >
-                  {activeTab === 'web' ? 'Get in Touch' : 'Start Your App'}
+                  {tabContent[activeTab].cta}
                 </Link>
               </div>
-
-              {/* <Image
-                src={
-                  activeTab === 'web'
-                    ? '/assets/service/web-development.png'
-                    : '/assets/service/app-development.png'
-                }
-                alt="Service Illustration"
-                width={300}
-                height={200}
-                className="rounded-2xl shadow-lg"
-              /> */}
             </motion.section>
-            {/* Tech Logos */}
+
             <motion.section
               key={`${activeTab}-logos`}
               initial={{ opacity: 0, y: 20 }}
@@ -251,7 +206,7 @@ export default function ServicesPageContent() {
               transition={{ duration: 0.8 }}
               className="max-w-5xl mx-auto flex flex-wrap justify-center gap-10 py-10"
             >
-              {(activeTab === 'web' ? webTechLogos : appTechLogos).map((src, idx) => (
+              {tabContent[activeTab].logos.map((src, idx) => (
                 <div
                   key={idx}
                   className="p-3 rounded-xl shadow-md hover:shadow-purple-500/30 transition"
@@ -266,48 +221,9 @@ export default function ServicesPageContent() {
                 </div>
               ))}
             </motion.section>
-            </div>
-            {/* Projects */}
-            <motion.section
-              key={`${activeTab}-projects`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ staggerChildren: 0.2 }}
-              className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto"
-            >
-              {(activeTab === 'web' ? webProjects : appProjects).map((project, idx) => (
-                <Link key={idx} href={project.link}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: idx * 0.1 }}
-                    className="relative group rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/30 transition hover:-translate-y-1 backdrop-blur-md"
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={300}
-                      height={300}
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-                      {project.tech.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="bg-purple-600/80 text-white text-xs px-2 py-0.5 rounded-full shadow"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </Link>
-              ))}
-            </motion.section>
-          </>
-        ) }
+          </div>
+        )}
       </div>
     </main>
- );
+  );
 }

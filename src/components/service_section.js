@@ -4,36 +4,38 @@ import React from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 
+
 const services = [
   {
     id: 'web',
     title: 'Web Development',
     icon: '/assets/home/web_dev.png',
     description:
-      'We build fast, SEO-optimized websites using modern framework and scalable architecture.',
+      'Responsive, SEO-optimized, and blazing-fast websites built with cutting-edge technologies and best practices.',
   },
   {
     id: 'app',
     title: 'App Development',
     icon: '/assets/home/app_dev.png',
     description:
-      'We build fast, SEO-optimized websites using modern framework and scalable architecture.',
+      'Cross-platform mobile apps that are fast, scalable, and optimized for performance and user experience.',
   },
   {
-    id: 'uiux',
-    title: 'UI/UX Design',
+    id: 'wordpress',
+    title: 'WordPress Development',
     icon: '/assets/home/wordpress.png',
     description:
-      'We build fast, SEO-optimized websites using modern framework and scalable architecture.',
+      'Custom WordPress solutions tailored for performance, easy content management, and modern aesthetics.',
   },
   {
     id: 'shopify',
-    title: 'Shopify',
+    title: 'Shopify Development',
     icon: '/assets/home/shopify.png',
     description:
-      'We build fast, SEO-optimized websites using modern framework and scalable architecture.',
+      'Customizable Shopify stores built for conversion, performance, and seamless shopping experiences.',
   },
 ];
+
 
 const SectionWrapper = styled.section`
   padding: 5rem 2rem;

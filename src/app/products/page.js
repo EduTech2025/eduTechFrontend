@@ -31,12 +31,12 @@ import modulesApi from '@/lib/pdf_modules';
 const products = [
   {
     name: 'PDF Editor',
-    icon: <FileText size={48} className="text-purple-300" />,
+    icon: "/assets/home/pdf.png",
     category: 'pdf',
   },
   {
-    name: 'Image Tools',
-    icon: <Image size={48} className="text-purple-300" />,
+    name: 'Interview Simulator',
+    icon:"/assets/home/inter-talk.png",
     category: 'image',
   },
 ];
@@ -207,15 +207,10 @@ export default function ProductsPage() {
             onClick={() => openModalWithCategory(product.category)}
             className="cursor-pointer bg-[#1a1a1a] rounded-2xl border border-white/10 hover:shadow-purple-500/30 transition-all p-4 group"
           >
-            <div className="flex space-x-2 mb-3">
-              <div className="w-3 h-3 rounded-full bg-red-500" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400" />
-              <div className="w-3 h-3 rounded-full bg-green-500" />
-            </div>
 
-            <div className="relative w-full h-36 mb-4 flex items-center justify-center rounded-md overflow-hidden shadow-inner">
+            <div className="relative w-full h-auto mb-4 flex items-center justify-center rounded-md overflow-hidden shadow-inner">
               <div className="transition-transform group-hover:scale-110">
-                {product.icon}
+               <img src={product.icon} alt=""/>
               </div>
             </div>
 
