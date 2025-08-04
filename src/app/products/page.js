@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import ProductCards from '@/components/Products/productCards';
@@ -9,7 +9,7 @@ import ModalTwo from '@/components/Products/modelTwo';
 
 const toolsWithSecondModal = ['Organize PDF'];
 
-export default function ProductsPage() {
+function ProductsPageContent() {
   const [modalVisible, setModalVisible] = useState(false);
   const [secondModalVisible, setSecondModalVisible] = useState(false);
   const [modalCategory, setModalCategory] = useState('');
@@ -37,40 +37,35 @@ export default function ProductsPage() {
     setActiveSubProduct(null);
     setModalSearch('');
     setModalCategory('');
-
-    // Clean the URL
     router.push('/products', { shallow: true });
   };
 
-  // Autofocus input when modal opens
   useEffect(() => {
     if (modalVisible && inputRef.current) {
       inputRef.current.focus();
     }
   }, [modalVisible]);
 
-  // Prevent scroll behind modal
   useEffect(() => {
-    document.body.style.overflow =
-      modalVisible || secondModalVisible ? 'hidden' : '';
-    return () => (document.body.style.overflow = '');
+    document.body.style.overflow = modalVisible || secondModalVisible ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [modalVisible, secondModalVisible]);
 
-  // Check query on load for modal auto-open
+  // Auto-open modal based on query
   useEffect(() => {
     const queryKeys = searchParams?.keys();
     const keysArray = queryKeys ? Array.from(queryKeys) : [];
     if (keysArray.length && searchParams.get(keysArray[0]) === 'open') {
       openModalWithCategory(keysArray[0]);
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <div className="text-white font-sans px-4 py-6">
-      {/* Product Cards */}
       <ProductCards openModalWithCategory={openModalWithCategory} />
 
-      {/* First Modal */}
       {modalVisible && (
         <ModalOne
           modalCategory={modalCategory}
@@ -82,11 +77,10 @@ export default function ProductsPage() {
           toolsWithSecondModal={toolsWithSecondModal}
           router={router}
           setLoading={setLoading}
-          closeModal={closeModal} // add this to use for modal close
+          closeModal={closeModal}
         />
       )}
 
-      {/* Second Modal */}
       {secondModalVisible && activeSubProduct && (
         <ModalTwo
           activeSubProduct={activeSubProduct}
@@ -94,12 +88,19 @@ export default function ProductsPage() {
         />
       )}
 
-      {/* Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-sm flex items-center justify-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-400 border-t-transparent" />
         </div>
       )}
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="text-white p-6">Loading...</div>}>
+      <ProductsPageContent />
+    </Suspense>
   );
 }
