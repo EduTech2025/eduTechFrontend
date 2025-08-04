@@ -8,10 +8,17 @@ export default function Footer() {
       <footer
           className="w-full text-white h-[80%] mt-6 relative z-10 backdrop-blur-md bg-no-repeat bg-cover"
       >
-        <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-5 gap-10">
+        <div className="md:hidden flex overflow-x-auto whitespace-nowrap bg-cover bg-center px-2 gap-2 no-scrollbar">
+          <img src="/assets/image_footer.png" className="w-[35%] h-auto flex-shrink-0" />
+          <img src="/assets/footer_name_image.png" className="w-[35%] h-auto flex-shrink-0" />
+          <img src="/assets/image_footer.png" className="w-[35%] h-auto flex-shrink-0" />
+          <img src="/assets/footer_name_image.png" className="w-[35%] h-auto flex-shrink-0" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="md:col-span-2">
-            <h2 className="text-3xl font-extrabold mb-4">De Silent Order</h2>
+            <h2 className="text-2xl font-extrabold mb-4" style={{ fontFamily: 'EthnocentricItalic' }}>De Silent Order</h2>
             <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-sm">
               We turn creative ambition into beautiful, functional user experiences. Let’s build the future together.
             </p>
@@ -70,14 +77,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center bg-cover bg-center px-14 ">
-          <img src={'/assets/image_footer.png'} width={"35%"} height={"auto"} className="px-4" />
-          <img src={'/assets/footer_name_image.png'} width={"35%"} height={"auto"} className="px-4"/>
-          <img src={'/assets/image_footer.png'} width={"35%"} height={"auto"} className="px-4" />
+        <div className="flex overflow-x-auto whitespace-nowrap bg-cover bg-center px-2 gap-2 no-scrollbar">
+            <img src="/assets/image_footer.png" className="w-[35%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[35%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[35%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[35%] h-auto flex-shrink-0" />
+          </div>
 
-        </div>
         {/* Bottom Bar */}
-        <div className="py-4border-white/10 py-4 text-center text-xs text-gray-500">
+        <div className="py-4 border-white/10 py-4 text-center text-xs text-gray-500">
           © {new Date().getFullYear()} Silent Order. All rights reserved.
         </div>
       </footer>

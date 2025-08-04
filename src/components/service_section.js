@@ -155,17 +155,21 @@ const ServiceSection = () => {
         Empowering you with tailored tech solutions built for the future!
       </SubHeading>
 
-      <TabRow>
-        {services.map((service) => (
-          <TabButton
-            key={service.id}
-            active={activeTab === service.id}
-            onClick={() => setActiveTab(service.id)}
-          >
-            {service.title}
-          </TabButton>
-        ))}
-      </TabRow>
+      <div className="overflow-x-auto my-4 mx-1 whitespace-nowrap no-scrollbar">
+          <div className="inline-flex gap-2">
+            {services.map((service) => (
+              <TabButton
+                key={service.id}
+                active={activeTab === service.id}
+                onClick={() => setActiveTab(service.id)}
+                className="flex-shrink-0"
+              >
+                {service.title}
+              </TabButton>
+            ))}
+          </div>
+        </div>
+
 
       {currentService && (
         <Card>

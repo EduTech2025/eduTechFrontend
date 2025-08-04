@@ -72,7 +72,7 @@ export default function Home() {
   return (
     <main className="text-gray-800 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="min-h-screen bg-black text-white relative overflow-hidden px-6 md:px-12 lg:px-20 py-20 flex flex-col-reverse md:flex-row items-center justify-between gap-10">
+      <section className="min-h-screen bg-black text-white relative overflow-hidden px-6 md:px-12 lg:px-20 md:py-20 flex flex-col-reverse md:flex-row items-center md:justify-between justify-end md:gap-10 gap-20">
         {/* Left Content */}
         <div className="z-10 w-full md:w-[60%]">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">

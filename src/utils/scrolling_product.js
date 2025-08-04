@@ -89,8 +89,8 @@ export default function ProductCategoriesCarousel() {
 
     return (
         <section className="py-20 px-6 text-white">
-            <div className="max-w-7xl mx-auto text-center mb-12">
-                <h2 className="text-4xl font-bold mb-4">Explore Our Product Categories</h2>
+            <div className="max-w-7xl mx-auto text-center mb-8">
+                <h2 className="text-4xl font-bold mb-4">Explore Our Products</h2>
                 <p className="text-gray-400 text-lg">
                     From PDFs to CRMs, we have tools for all your needs
                 </p>
@@ -98,7 +98,7 @@ export default function ProductCategoriesCarousel() {
 
             <div
                 ref={scrollRef}
-                className="overflow-x-auto -mx-4 px-4 pb-6 no-scrollbar snap-x snap-mandatory"
+                className="overflow-x-auto -mx-4 px-4 py-5 no-scrollbar snap-x snap-mandatory"
             >
                 <div className="flex gap-6 items-center w-max">
                     {productCategories.map((category, idx) => {
