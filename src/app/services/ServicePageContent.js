@@ -7,8 +7,7 @@ import { Code, Smartphone, Palette } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// --- Projects & Tech Logos ---
-
+// --- Tech Logos ---
 const webTechLogos = [
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
@@ -17,8 +16,7 @@ const webTechLogos = [
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-plain-wordmark.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-plain.svg'
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg'
 ];
 
 const appTechLogos = [
@@ -31,36 +29,111 @@ const appTechLogos = [
 ];
 
 const shopifyTechLogos = [
-  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/shopify/shopify-original.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/graphql/graphql-plain.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
   'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
-  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-plain.svg'
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jquery/jquery-plain-wordmark.svg'
 ];
 
-const uiuxTechTags = ['Design Systems', 'Micro-Interactions', 'Dark Mode', 'Mobile-first', 'Accessibility'];
+const wordpressTechLogos = [
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-plain.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg'
+];
 
 const tabContent = {
   web: {
     title: 'Web Development',
     icon: <Code size={32} className="text-purple-400" />,
-    description:
-      'We create fast, scalable, and visually stunning websites using modern technologies like Next.js, Tailwind, and headless CMS.',
+    description: (
+      <>
+        <p>
+          We build modern, responsive websites with clean architecture and blazing-fast performance using React, Next.js, and Tailwind CSS. From landing pages to complex dashboards, we deliver robust, scalable, and SEO-friendly solutions.
+        </p>
+        <p className="mt-2 text-gray-400 text-sm sm:text-base">
+          Our Web Development Services include:
+        </p>
+        <ul className="list-disc pl-5 text-gray-400 text-sm sm:text-base leading-relaxed">
+          <li>Pixel-perfect UI/UX Implementation</li>
+          <li>Next.js Static + SSR Development</li>
+          <li>CMS / Headless CMS Integration (Strapi, Sanity)</li>
+          <li>SEO Optimization & Schema Markup</li>
+          <li>Custom Admin Dashboards</li>
+        </ul>
+      </>
+    ),
     cta: 'Get in Touch',
     logos: webTechLogos
   },
   app: {
     title: 'App Development',
     icon: <Smartphone size={32} className="text-purple-400" />,
-    description:
-      'From scalable cross-platform apps to native experiences, we build engaging mobile applications tailored to your business needs.',
+    description: (
+      <>
+        <p>
+          We craft high-performance mobile and cross-platform apps using Flutter and React Native. Our apps offer seamless user experiences and fast load times, designed to scale with your business.
+        </p>
+        <p className="mt-2 text-gray-400 text-sm sm:text-base">
+          We specialize in:
+        </p>
+        <ul className="list-disc pl-5 text-gray-400 text-sm sm:text-base leading-relaxed">
+          <li>Flutter & React Native Cross-platform Apps</li>
+          <li>API Integration & Firebase Backend</li>
+          <li>Offline Support & Real-time Features</li>
+          <li>Custom UI Animations</li>
+          <li>Deployment to Play Store & App Store</li>
+        </ul>
+      </>
+    ),
     cta: 'Start Your App',
     logos: appTechLogos
   },
-  shopify: {
-    title: 'Shopify Development',
+  wordpress: {
+    title: 'WordPress',
     icon: <Palette size={32} className="text-purple-400" />,
-    description:
-      'We build high-converting Shopify stores, custom themes, and subscription apps using Liquid, GraphQL, and Tailwind CSS.',
+    description: (
+      <>
+        <p>
+          We design and develop custom WordPress websites that are fast, functional, and tailored to your goals. From blogs to eCommerce solutions, we deliver high-performance, SEO-optimized WordPress sites.
+        </p>
+        <p className="mt-2 text-gray-400 text-sm sm:text-base">
+          Services we offer:
+        </p>
+        <ul className="list-disc pl-5 text-gray-400 text-sm sm:text-base leading-relaxed">
+          <li>Custom WordPress Themes</li>
+          <li>Plugin Development & Integration</li>
+          <li>WooCommerce Setup & Store Optimization</li>
+          <li>Speed & Security Enhancements</li>
+          <li>Migration & Maintenance</li>
+        </ul>
+      </>
+    ),
+    cta: 'Build with WordPress',
+    logos: wordpressTechLogos
+  },
+  shopify: {
+    title: 'Shopify',
+    icon: <Palette size={32} className="text-purple-400" />,
+    description: (
+      <>
+        <p>
+          We create beautiful and conversion-driven Shopify stores that are tailored for scalability and performance. From custom storefronts to checkout optimization, we ensure a seamless shopping experience.
+        </p>
+        <p className="mt-2 text-gray-400 text-sm sm:text-base">
+          Our Shopify capabilities include:
+        </p>
+        <ul className="list-disc pl-5 text-gray-400 text-sm sm:text-base leading-relaxed">
+          <li>Custom Theme Development</li>
+          <li>Third-party App Integration</li>
+          <li>Product Setup & SEO Optimization</li>
+          <li>Checkout Flow Enhancements</li>
+          <li>Store Speed Optimization</li>
+        </ul>
+      </>
+    ),
     cta: 'Launch Your Store',
     logos: shopifyTechLogos
   }
@@ -74,7 +147,7 @@ export default function ServicesPageContent() {
   const [activeTab, setActiveTab] = useState('web');
 
   useEffect(() => {
-    if (['web', 'app', 'uiux', 'shopify'].includes(tabParam || '')) {
+    if (['web', 'app', 'wordpress', 'shopify'].includes(tabParam || '')) {
       setActiveTab(tabParam);
     }
   }, [tabParam]);
@@ -87,19 +160,19 @@ export default function ServicesPageContent() {
   const tabs = [
     { key: 'web', label: 'Web Development', icon: <Code size={20} /> },
     { key: 'app', label: 'App Development', icon: <Smartphone size={20} /> },
-    { key: 'uiux', label: 'UI/UX Design', icon: <Palette size={20} /> },
+    { key: 'wordpress', label: 'WordPress', icon: <Palette size={20} /> },
     { key: 'shopify', label: 'Shopify', icon: <Palette size={20} /> }
   ];
 
   return (
-    <main className="min-h-screen text-white px-6 py-6 font-sans">
+    <main className="min-h-screen text-white px-4 py-10 font-sans">
       {/* Tabs */}
-      <div className="flex justify-center mb-8 gap-6">
+      <div className="grid grid-cols-2 gap-3 px-2 mb-8 md:flex md:justify-center md:gap-6">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => handleTabChange(tab.key)}
-            className={`flex items-center gap-2 px-5 py-2 rounded-full border text-sm transition duration-300 ${
+            className={`flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full border text-sm transition duration-300 ${
               activeTab === tab.key
                 ? 'bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-500/30'
                 : 'border-white/20 text-white hover:bg-white/10'
@@ -110,120 +183,61 @@ export default function ServicesPageContent() {
           </button>
         ))}
       </div>
-
-      <div className="border border-white/20 backdrop-blur-xl shadow-2xl rounded-3xl p-10 bg-white/5">
-        {activeTab === 'uiux' ? (
+  
+      {/* Content Section */}
+      <div className="border border-white/20 backdrop-blur-xl shadow-2xl rounded-3xl p-6 sm:p-10 bg-white/5 max-w-7xl mx-auto">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+          {/* Description */}
           <motion.section
-            initial={{ opacity: 0, y: 30 }}
+            key={activeTab}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-16"
+            className="w-full lg:w-1/2 space-y-4"
           >
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 items-center gap-12">
-              <Image
-                src="/assets/service/ui.png"
-                alt="UIUX"
-                width={500}
-                height={400}
-                className="rounded-xl p-4 border border-purple-600 shadow-lg"
-              />
-              <div>
-                <h2 className="text-3xl font-bold mb-4">We Design Emotions</h2>
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                  Our design isn't about buttons—it’s about experiences that guide and delight. Powered by deep research and user empathy.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {uiuxTechTags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="text-xs bg-white/10 text-white border border-purple-600 px-3 py-1 rounded-full backdrop-blur"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            <div className="flex items-center justify-center lg:justify-start gap-3">
+              {tabContent[activeTab].icon}
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+                {tabContent[activeTab].title}
+              </h1>
             </div>
-
-            <div className="max-w-5xl mx-auto text-center py-10">
-              <h3 className="text-3xl font-semibold mb-4">Design That Thinks Ahead</h3>
-              <p className="text-gray-300 text-base mb-8">
-                We craft intuitive flows using layout psychology, animation, and simplicity—anticipating user actions before they happen.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-6 text-left">
-                <div className="p-6 bg-white/10 border border-purple-600 rounded-xl backdrop-blur-md">
-                  <h4 className="text-lg font-semibold text-purple-300 mb-2">User Journey Mapping</h4>
-                  <p className="text-sm text-gray-200">Track and optimize user steps to enhance usability and delight.</p>
-                </div>
-                <div className="p-6 bg-white/10 border border-purple-600 rounded-xl backdrop-blur-md">
-                  <h4 className="text-lg font-semibold text-purple-300 mb-2">Interactive Prototypes</h4>
-                  <p className="text-sm text-gray-200">Clickable, testable mockups—experience before development begins.</p>
-                </div>
-              </div>
+            <div className="text-gray-300 text-sm sm:text-base leading-relaxed space-y-3">
+              {tabContent[activeTab].description}
             </div>
-
-            <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold">UX That Amplifies Your Brand</h3>
-              <p className="text-sm text-gray-300 mt-3">
-                Whether it’s a fresh idea or a redesign, we turn functionality into elegant, thoughtful experiences.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-block mt-6 px-6 py-2 bg-white/10 text-white text-sm border border-purple-600 rounded-full hover:bg-purple-600 transition backdrop-blur"
-              >
-                Let’s Talk Design
-              </Link>
-            </div>
+            <Link
+              href="/contact"
+              className="inline-block mt-4 px-6 py-2 bg-purple-600 text-white rounded-full text-sm hover:bg-purple-700 transition"
+            >
+              {tabContent[activeTab].cta}
+            </Link>
           </motion.section>
-        ) : (
-          <div className="text-center flex p-4 gap-10 justify-between flex-row items-center">
-            <motion.section
-              key={activeTab}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10"
-            >
-              <div className="flex-1 space-y-4">
-                <div className="flex items-center justify-center gap-3">
-                  {tabContent[activeTab].icon}
-                  <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{tabContent[activeTab].title}</h1>
-                </div>
-                <p className="text-gray-300 leading-relaxed text-base">{tabContent[activeTab].description}</p>
-                <Link
-                  href="/contact"
-                  className="inline-block mt-4 px-6 py-2 bg-purple-600 text-white rounded-full text-sm hover:bg-purple-700 transition"
-                >
-                  {tabContent[activeTab].cta}
-                </Link>
+  
+          {/* Tech Logos */}
+          <motion.section
+            key={`${activeTab}-logos`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full lg:w-1/2 grid grid-cols-3 sm:grid-cols-4 gap-6 sm:gap-8 justify-items-center"
+          >
+            {tabContent[activeTab].logos.map((src, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded-xl bg-white/10 shadow-md hover:shadow-purple-500/30 transition transform hover:scale-105"
+              >
+                <Image
+                  src={src}
+                  alt={`Tech ${idx}`}
+                  width={50}
+                  height={50}
+                  className="object-contain"
+                />
               </div>
-            </motion.section>
-
-            <motion.section
-              key={`${activeTab}-logos`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-5xl mx-auto flex flex-wrap justify-center gap-10 py-10"
-            >
-              {tabContent[activeTab].logos.map((src, idx) => (
-                <div
-                  key={idx}
-                  className="p-3 rounded-xl shadow-md hover:shadow-purple-500/30 transition"
-                >
-                  <Image
-                    src={src}
-                    alt={`Tech ${idx}`}
-                    width={50}
-                    height={50}
-                    className="transition-transform duration-300"
-                  />
-                </div>
-              ))}
-            </motion.section>
-          </div>
-        )}
+            ))}
+          </motion.section>
+        </div>
       </div>
     </main>
   );
+  
 }

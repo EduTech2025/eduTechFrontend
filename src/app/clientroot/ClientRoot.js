@@ -20,7 +20,16 @@ export default function ClientRoot({ children }) {
   };
 
    const pathname = usePathname();
-  const hideFooter = pathname.startsWith('/student_dashboard') || pathname.startsWith('/admin_dashboard');
+   const hiddenFooterPaths = [
+    '/student_dashboard',
+    '/contact',
+    '/products',
+    '/login',
+    '/admin_dashboard',
+  ];
+  
+  const hideFooter = hiddenFooterPaths.some(path => pathname.startsWith(path));
+  
 
 
   useEffect(() => {

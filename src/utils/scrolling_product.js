@@ -7,13 +7,13 @@ import Link from 'next/link';
 const productCategories = [
     {
         title: 'PDF Editor',
-        link: '/products/pdf-editor',
+        link: '/products/?pdf=open',  
         icon: '/assets/home/pdf.png',
         comingSoon: false,
     },
     {
         title: 'Interview Simulator',
-        link: '/products/interview-preparation',
+        link: '/products/?interview=open',
         icon: '/assets/home/inter-talk.png',
         comingSoon: true,
     },

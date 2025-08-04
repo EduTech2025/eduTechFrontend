@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Mail, User, BookOpenText, MessageSquareText } from 'lucide-react';
 import Toast from '@/utils/toast';
 import contactApi from '@/lib/contact_api';
@@ -35,88 +35,92 @@ export default function ContactUsPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-xl rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg p-8"
-      >
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Contact Us</h2>
-
-        <form onSubmit={handleSubmit} className="space-y-5">
+    <main className="flex pt-[5%] items-center justify-center bg-black px-4">
+      <div className="w-full max-w-md p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
+        <h1 className="text-3xl font-bold text-white mb-6 text-center">Contact Us</h1>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Name */}
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              required
-              className="pl-10 pr-3 w-full bg-black/30 text-white border border-white/20 rounded-md py-2 text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            />
+          <div>
+            <label className="block text-sm font-semibold text-white mb-1">Name</label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 text-white/60" size={18} />
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                placeholder="Your Name"
+                className="w-full px-10 py-2 bg-transparent border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/40 transition"
+              />
+            </div>
           </div>
 
           {/* Email */}
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="you@example.com"
-              required
-              className="pl-10 pr-3 w-full bg-black/30 text-white border border-white/20 rounded-md py-2 text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            />
+          <div>
+            <label className="block text-sm font-semibold text-white mb-1">Email</label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-white/60" size={18} />
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                placeholder="you@example.com"
+                className="w-full px-10 py-2 bg-transparent border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/40 transition"
+              />
+            </div>
           </div>
 
           {/* Subject */}
-          <div className="relative">
-            <BookOpenText className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60" />
-            <input
-              type="text"
-              name="subject"
-              value={form.subject}
-              onChange={handleChange}
-              placeholder="Subject"
-              required
-              className="pl-10 pr-3 w-full bg-black/30 text-white border border-white/20 rounded-md py-2 text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            />
+          <div>
+            <label className="block text-sm font-semibold text-white mb-1">Subject</label>
+            <div className="relative">
+              <BookOpenText className="absolute left-3 top-1/2 -translate-y-1/2 text-white/60" size={18} />
+              <input
+                type="text"
+                name="subject"
+                value={form.subject}
+                onChange={handleChange}
+                required
+                placeholder="Subject"
+                className="w-full px-10 py-2 bg-transparent border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/40 transition"
+              />
+            </div>
           </div>
 
           {/* Message */}
-          <div className="relative">
-            <MessageSquareText className="absolute left-3 top-4 h-5 w-5 text-white/60" />
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Type your message..."
-              required
-              rows={4}
-              className="pl-10 pr-3 pt-2 w-full bg-black/30 text-white border border-white/20 rounded-md text-sm placeholder-white/50 focus:ring-2 focus:ring-indigo-500 focus:outline-none resize-none"
-            />
+          <div>
+            <label className="block text-sm font-semibold text-white mb-1">Message</label>
+            <div className="relative">
+              <MessageSquareText className="absolute left-3 top-3 text-white/60" size={18} />
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                required
+                rows={4}
+                placeholder="Type your message..."
+                className="w-full px-10 py-2 bg-transparent border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/40 transition resize-none"
+              />
+            </div>
           </div>
 
-          {/* Submit Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          {/* Submit */}
+          <button
             type="submit"
             disabled={submitting}
-            className={`w-full py-2 rounded-lg text-white text-sm font-semibold transition ${
+            className={`w-full py-2 px-4 bg-white/10 border border-white/20 text-white rounded-lg transition duration-300 ${
               submitting
-                ? 'bg-indigo-300 cursor-not-allowed'
-                : 'bg-indigo-600 hover:bg-indigo-700'
+                ? 'cursor-not-allowed opacity-50'
+                : 'hover:bg-white/20 hover:text-white'
             }`}
           >
             {submitting ? 'Sending...' : 'Send Message'}
-          </motion.button>
+          </button>
         </form>
-      </motion.div>
+      </div>
 
       <AnimatePresence>
         {toast && (
@@ -127,6 +131,6 @@ export default function ContactUsPage() {
           />
         )}
       </AnimatePresence>
-    </div>
+    </main>
   );
 }

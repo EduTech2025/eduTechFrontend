@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
-
 
 const services = [
   {
@@ -36,35 +35,46 @@ const services = [
   },
 ];
 
-
 const SectionWrapper = styled.section`
-  padding: 5rem 2rem;
+  padding: 4rem 1.5rem;
   background: #000;
   color: white;
   text-align: center;
 `;
 
 const Heading = styled.h2`
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 `;
 
 const SubHeading = styled.p`
   font-size: 1rem;
   color: #aaa;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem 3rem;
-  max-width: 900px;
-  margin: 0 auto;
+const TabRow = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+`;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+const TabButton = styled.button`
+  background: ${({ active }) => (active ? '#a855f7' : 'transparent')};
+  border: 1px solid #a855f7;
+  color: ${({ active }) => (active ? 'white' : '#a855f7')};
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #9333ea;
+    color: white;
   }
 `;
 
@@ -72,10 +82,11 @@ const Card = styled.div`
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 1rem;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 16px rgba(168, 85, 247, 0.08);
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,23 +95,28 @@ const Card = styled.div`
   &:hover {
     transform: translateY(-6px);
   }
+
+  @media (max-width: 600px) {
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const Icon = styled.img`
   width: 80%;
   height: auto;
+  object-fit: contain;
   margin-bottom: 1.5rem;
 `;
 
 const Title = styled.h3`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
   margin-bottom: 1rem;
 `;
 
 const Description = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #ccc;
   margin-bottom: 1.5rem;
   line-height: 1.6;
@@ -123,11 +139,14 @@ const Button = styled.button`
 `;
 
 const ServiceSection = () => {
+  const [activeTab, setActiveTab] = useState('web');
   const router = useRouter();
 
   const handleViewMore = (id) => {
     router.push(`/services?tab=${id}`);
   };
+
+  const currentService = services.find((s) => s.id === activeTab);
 
   return (
     <SectionWrapper>
@@ -136,19 +155,26 @@ const ServiceSection = () => {
         Empowering you with tailored tech solutions built for the future!
       </SubHeading>
 
-      <Grid>
+      <TabRow>
         {services.map((service) => (
-          <Card
+          <TabButton
             key={service.id}
-            className={service.id === 'app' || service.id === 'shopify' ? 'mt-12' : 'mb-12'}
+            active={activeTab === service.id}
+            onClick={() => setActiveTab(service.id)}
           >
-            <Icon src={service.icon} alt={service.title} />
-            <Title>{service.title}</Title>
-            <Description>{service.description}</Description>
-            <Button onClick={() => handleViewMore(service.id)}>View More</Button>
-          </Card>
+            {service.title}
+          </TabButton>
         ))}
-      </Grid>
+      </TabRow>
+
+      {currentService && (
+        <Card>
+          <Icon src={currentService.icon} alt={currentService.title} />
+          <Title>{currentService.title}</Title>
+          <Description>{currentService.description}</Description>
+          <Button onClick={() => handleViewMore(currentService.id)}>View More</Button>
+        </Card>
+      )}
     </SectionWrapper>
   );
 };
