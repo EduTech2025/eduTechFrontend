@@ -105,7 +105,7 @@ export default function CareerPage() {
               className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-2 relative"
             >
               {job.urgent && (
-                <div className="absolute -top-3 -right-3 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
+                <div className="absolute right-5 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
                   Urgent Hiring
                 </div>
               )}
@@ -150,11 +150,12 @@ export default function CareerPage() {
                 </div>
 
                 <Link
-                  href={`/career/apply?role=${encodeURIComponent(job.title)}`}
+                  href={`/contact?subject=${encodeURIComponent(`Job Application - ${job.title}`)}`}
                   className="bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-6 rounded-full flex items-center justify-center gap-2 hover:from-pink-600 hover:to-purple-700 transition-all duration-300 font-medium group-hover:scale-105"
                 >
                   Apply Now <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
+
               </div>
             </motion.div>
           ))}
@@ -217,11 +218,12 @@ export default function CareerPage() {
             We're always looking for exceptional talent. Send us your resume and let's start a conversation.
           </p>
           <Link
-            href="/career/general-application"
+            href={`/contact?subject=${encodeURIComponent("General Application")}`}
             className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-8 rounded-full text-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105"
           >
             Send General Application <ArrowRight size={20} />
           </Link>
+
         </motion.div>
       </section>
     </div>
