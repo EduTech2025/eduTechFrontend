@@ -35,4 +35,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-Some change in ui/carrer_page branch
+Run this along with *npm run dev*
+- npm run mock-server -> To get the dynamic DB from db.json  (Added as dev-dependency)
