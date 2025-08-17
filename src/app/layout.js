@@ -5,8 +5,13 @@ import GrokStarBackground from '@/utils/ParticleBackground';
 import ClickSpark from "@/utils/cursor_tap";
 
 export const metadata = {
-  title: 'My Site',
+  title: 'De Silent Order',
   description: 'A simple site with navbar layout',
+  icons: {
+    icon: "/assets/DeSilentOrder_DarkLogo_new_old.png",       
+    shortcut: "/favicon.ico",   
+    apple: "/assets/DeSilentOrder_DarkLogo_new_old.png", 
+  },
 };
 
 export default function RootLayout({ children }) {
