@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Code, Smartphone, Palette } from 'lucide-react';
+import { Code, Smartphone, Palette, ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -116,7 +116,7 @@ const tabContent = {
   },
   shopify: {
     title: 'Shopify',
-    icon: <Palette size={32} className="text-purple-400" />,
+    icon: <ShoppingBag size={32} className="text-purple-400" />,
     description: (
       <>
         <p>
@@ -161,28 +161,33 @@ export default function ServicesPageContent() {
     { key: 'web', label: 'Web Development', icon: <Code size={20} /> },
     { key: 'app', label: 'App Development', icon: <Smartphone size={20} /> },
     { key: 'wordpress', label: 'WordPress', icon: <Palette size={20} /> },
-    { key: 'shopify', label: 'Shopify', icon: <Palette size={20} /> }
+    { key: 'shopify', label: 'Shopify', icon: <ShoppingBag size={20} /> }
   ];
 
   return (
-    <main className="min-h-screen text-white px-4 py-10 font-sans">
+    <main className="min-h-screen text-white px-4 py-2 font-sans">
       {/* Tabs */}
-      <div className="grid grid-cols-2 gap-3 px-2 mb-8 md:flex md:justify-center md:gap-6">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => handleTabChange(tab.key)}
-            className={`flex items-center gap-2 whitespace-nowrap px-4 py-2 rounded-full border text-sm transition duration-300 ${
-              activeTab === tab.key
-                ? 'bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-500/30'
-                : 'border-white/20 text-white hover:bg-white/10'
-            }`}
-          >
-            {tab.icon}
-            {tab.label}
-          </button>
-        ))}
-      </div>
+<div className="flex gap-3 px-2 py-2 mb-8 overflow-x-auto md:justify-center md:flex-wrap no-scrollbar">
+  {tabs.map((tab) => (
+    <button
+      key={tab.key}
+      onClick={() => handleTabChange(tab.key)}
+      className={`flex items-center justify-center gap-2 
+      whitespace-nowrap px-4 py-2 rounded-full border text-sm font-medium
+      transition duration-300 flex-shrink-0
+      ${activeTab === tab.key
+        ? "bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-500/30"
+        : "border-white/20 text-white hover:bg-white/10"
+      }`}
+    >
+      <span className="flex items-center gap-2">
+        {tab.icon}
+        <span>{tab.label}</span>
+      </span>
+    </button>
+  ))}
+</div>
+
   
       {/* Content Section */}
       <div className="border border-white/20 backdrop-blur-xl shadow-2xl rounded-3xl p-6 sm:p-10 bg-white/5 max-w-7xl mx-auto">
