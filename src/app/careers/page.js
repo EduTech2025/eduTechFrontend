@@ -1,42 +1,109 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, MapPin, Clock, Users, Star, Briefcase, Heart, Zap } from "lucide-react";
 
+const jobs = [
+  {
+    title: "Frontend Developer",
+    location: "Remote",
+    type: "Full-Time",
+    salary: "$70k - $90k",
+    experience: "2-4 years",
+    description:
+      "Looking for a creative React/Next.js developer with experience in TailwindCSS and modern UI animations.",
+    skills: ["React", "Next.js", "TypeScript", "TailwindCSS"],
+    urgent: false,
+  },
+  {
+    title: "Backend Developer",
+    location: "Remote",
+    type: "Full-Time",
+    salary: "$80k - $100k",
+    experience: "3-5 years",
+    description:
+      "Seeking an experienced backend engineer skilled in Django/FastAPI, API integrations, and database optimization.",
+    skills: ["Python", "Django", "PostgreSQL", "AWS"],
+    urgent: true,
+  },
+  {
+    title: "AI Engineer",
+    location: "Remote",
+    type: "Contract",
+    salary: "$90k - $120k",
+    experience: "4-6 years",
+    description:
+      "Passionate about AI, LLMs, and GenAI applications? Join our AI team to build intelligent solutions.",
+    skills: ["Python", "TensorFlow", "PyTorch", "LangChain"],
+    urgent: false,
+  },
+  {
+    title: "DevOps Engineer",
+    location: "Hybrid",
+    type: "Full-Time",
+    salary: "$85k - $110k",
+    experience: "3-5 years",
+    description:
+      "Expert in cloud infrastructure, CI/CD pipelines, and automation. Help us scale our platform globally.",
+    skills: ["AWS", "Docker", "Kubernetes", "Terraform"],
+    urgent: false,
+  },
+  {
+    title: "Product Designer",
+    location: "Remote",
+    type: "Full-Time",
+    salary: "$75k - $95k",
+    experience: "3-4 years",
+    description:
+      "Creative UI/UX designer to craft beautiful, intuitive experiences that users love and remember.",
+    skills: ["Figma", "Adobe Creative Suite", "Prototyping", "User Research"],
+    urgent: false,
+  },
+  {
+    title: "Marketing Specialist",
+    location: "Remote",
+    type: "Part-Time",
+    salary: "$50k - $65k",
+    experience: "2-3 years",
+    description:
+      "Drive growth through strategic marketing campaigns, content creation, and brand partnerships.",
+    skills: ["Content Marketing", "SEO", "Social Media", "Analytics"],
+    urgent: true,
+  },
+];
 
-// Icon mapping from string name to actual icon component
-const iconMap = {
-  Heart,
-  Zap,
-  Star,
-  Users,
-  Briefcase,
-  MapPin,
-  Clock,
-};
+const benefits = [
+  {
+    icon: <Heart className="w-6 h-6" />,
+    title: "Health & Wellness",
+    description: "Comprehensive health insurance and wellness programs"
+  },
+  {
+    icon: <Zap className="w-6 h-6" />,
+    title: "Flexible Work",
+    description: "Remote-first culture with flexible hours and unlimited PTO"
+  },
+  {
+    icon: <Star className="w-6 h-6" />,
+    title: "Growth & Learning",
+    description: "Learning budget, conferences, and mentorship programs"
+  },
+  {
+    icon: <Users className="w-6 h-6" />,
+    title: "Amazing Team",
+    description: "Work with passionate, talented people who inspire each other"
+  },
+];
+
+const stats = [
+  { number: "50+", label: "Team Members" },
+  { number: "15+", label: "Countries" },
+  { number: "99%", label: "Employee Satisfaction" },
+  { number: "4.8", label: "Glassdoor Rating" },
+];
 
 export default function CareerPage() {
-
-  const [jobs, setJobs] = useState([]);
-  const [benefits, setBenefits] = useState([]);
-  const [stats, setStats] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const jobsRes = await fetch("http://localhost:4000/jobs");
-      const benefitsRes = await fetch("http://localhost:4000/benefits");
-      const statsRes = await fetch("http://localhost:4000/stats");
-
-      setJobs(await jobsRes.json());
-      setBenefits(await benefitsRes.json());
-      setStats(await statsRes.json());
-    }
-    fetchData();
-  }, []);
-
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
@@ -178,27 +245,24 @@ export default function CareerPage() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {benefits.map((benefit, index) => {
-            const IconComponent = iconMap[benefit.icon] || null;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-purple-600/30 group-hover:to-pink-600/30 transition-all duration-300">
-                  {IconComponent && (
-                    <IconComponent className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
-                  )}
+          {benefits.map((benefit, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center group"
+            >
+              <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-purple-600/30 group-hover:to-pink-600/30 transition-all duration-300">
+                <div className="text-purple-400 group-hover:text-purple-300 transition-colors">
+                  {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{benefit.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
-              </motion.div>
-            );
-          })}
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-white">{benefit.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{benefit.description}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -223,7 +287,6 @@ export default function CareerPage() {
           >
             Send General Application <ArrowRight size={20} />
           </Link>
-
         </motion.div>
       </section>
     </div>
