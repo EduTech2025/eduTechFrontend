@@ -1,15 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence } from 'framer-motion';
 import { Mail, User, BookOpenText, MessageSquareText } from 'lucide-react';
 import Toast from '@/utils/toast';
 import contactApi from '@/lib/contact_api';
 
 export default function ContactUsPage() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const searchParams = useSearchParams();
+  const subjectFromUrl = searchParams.get("subject") || "";
+  
+  const [form, setForm] = useState({ name: '', email: '', subject: subjectFromUrl, message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
+
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
