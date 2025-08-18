@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
+import { link } from '@heroui/react';
 
 const services = [
   {
@@ -11,6 +12,7 @@ const services = [
     icon: '/assets/home/web_dev.png',
     description:
       'Responsive, SEO-optimized, and blazing-fast websites built with cutting-edge technologies and best practices.',
+    link: 'pq1goyhJPjA',
   },
   {
     id: 'app',
@@ -18,6 +20,7 @@ const services = [
     icon: '/assets/home/app_dev.png',
     description:
       'Cross-platform mobile apps that are fast, scalable, and optimized for performance and user experience.',
+    link: '_p4_DJyGFZ4',
   },
   {
     id: 'wordpress',
@@ -25,6 +28,7 @@ const services = [
     icon: '/assets/home/wordpress.png',
     description:
       'Custom WordPress solutions tailored for performance, easy content management, and modern aesthetics.',
+    link: 'TQ_5iS7lekY',
   },
   {
     id: 'shopify',
@@ -32,6 +36,7 @@ const services = [
     icon: '/assets/home/shopify.png',
     description:
       'Customizable Shopify stores built for conversion, performance, and seamless shopping experiences.',
+      link: 'H75H1cbl_94',
   },
 ];
 
@@ -62,10 +67,12 @@ const TabRow = styled.div`
   margin-bottom: 2rem;
 `;
 
-const TabButton = styled.button`
-  background: ${({ active }) => (active ? '#a855f7' : 'transparent')};
-  border: 1px solid #a855f7;
-  color: ${({ active }) => (active ? 'white' : '#a855f7')};
+const TabButton = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== 'active'
+})`
+  background: ${({ active }) => (active ? 'white' : 'transparent')};
+  border: 1px solid white;
+  color: ${({ active }) => (active ? 'black' : 'white')};
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
   font-weight: 500;
@@ -73,8 +80,8 @@ const TabButton = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    background: #9333ea;
-    color: white;
+    background: white;
+    color: black;
   }
 `;
 
@@ -156,29 +163,44 @@ const ServiceSection = () => {
       </SubHeading>
 
       <div className="overflow-x-auto my-4 mx-1 whitespace-nowrap no-scrollbar">
-          <div className="inline-flex gap-2">
-            {services.map((service) => (
-              <TabButton
-                key={service.id}
-                active={activeTab === service.id}
-                onClick={() => setActiveTab(service.id)}
-                className="flex-shrink-0"
-              >
-                {service.title}
-              </TabButton>
-            ))}
-          </div>
+        <div className="inline-flex gap-2">
+          {services.map((service) => (
+            <TabButton
+              key={service.id}
+              active={activeTab === service.id}
+              onClick={() => setActiveTab(service.id)}
+              className="flex-shrink-0"
+            >
+              {service.title}
+            </TabButton>
+          ))}
         </div>
+      </div>
 
-
-      {currentService && (
+      {/* {currentService && (
         <Card>
           <Icon src={currentService.icon} alt={currentService.title} />
           <Title>{currentService.title}</Title>
           <Description>{currentService.description}</Description>
+ 
           <Button onClick={() => handleViewMore(currentService.id)}>View More</Button>
         </Card>
-      )}
+      )} */}
+
+  {currentService && (
+  <Card className="overflow-hidden p-0 m-0 relative w-full" style={{ aspectRatio: '18/10' }}>
+    <iframe
+      className="absolute top-0 left-0 w-full h-full"
+      src={`https://www.youtube.com/embed/zQGQLEE1nQs?autoplay=1&mute=1&loop=1&playlist=${currentService.link}&controls=0&modestbranding=1&showinfo=0&rel=0`}
+      title="YouTube video"
+      frameBorder="0"
+      allow="autoplay; encrypted-media"
+    />
+  </Card>
+)}
+
+
+
     </SectionWrapper>
   );
 };
