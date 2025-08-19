@@ -8,9 +8,9 @@ export const metadata = {
   title: 'De Silent Order',
   description: 'A simple site with navbar layout',
   icons: {
-    icon: "/assets/DeSilentOrder_DarkLogo_new_old.png",       
+    icon: "/favicon.ico",       
     shortcut: "/favicon.ico",   
-    apple: "/assets/DeSilentOrder_DarkLogo_new_old.png", 
+    apple: "/favicon.ico", 
   },
 };
 
