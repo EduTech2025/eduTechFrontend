@@ -2,20 +2,27 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
+
 import { getDatabase } from "firebase/database";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDOUqJFWno8LC8ndWZerkL0bFEo0kj7TNg",
-  authDomain: "desilentorder-2515e.firebaseapp.com",
-  projectId: "desilentorder-2515e",
-  storageBucket: "desilentorder-2515e.appspot.com",
-  databaseURL: "https://desilentorder-2515e-default-rtdb.asia-southeast1.firebasedatabase.app/",
-  messagingSenderId: "319801382014",
-  appId: "1:319801382014:web:b10815c4d147607e86f42f",
-  measurementId: "G-E5NDLP1LHL"
+  apiKey: "AIzaSyDJ-j5AHVazV35cqN9GECX1eHE7_Xe18CM",
+  authDomain: "desilentorder-e7b92.firebaseapp.com",
+  projectId: "desilentorder-e7b92",
+  // databaseURL: "https://desilentorder-2515e-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  databaseURL: "https://desilentorder-e7b92-default-rtdb.firebaseio.com/",
+  storageBucket: "desilentorder-e7b92.firebasestorage.app",
+  messagingSenderId: "75545969383",
+  appId: "1:75545969383:web:63e45d32eb6d28a8185842",
+  measurementId: "G-FKXG6LFHXJ"
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
+
 const provider = new GoogleAuthProvider();
  const db = getDatabase(app);
 export { auth, provider,db };
+
+
+

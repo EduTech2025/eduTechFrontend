@@ -2,10 +2,10 @@ import api from "./base_url";
 
 
 const endPoints = {
-  signup:"api/signup/",
-  login:"api/login/",
-  get_user:"api/user/",
-  get_all_user:"api/users/",
+  signup:"users/signup/",
+  login:"users/login/",
+  get_user:"users/user/",
+  get_all_user:"users/users/",
 }
 
 

@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FcGoogle } from 'react-icons/fc';
 import { AnimatePresence } from 'framer-motion';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Toast from '@/utils/toast';
 import auth from '@/lib/auth_api';
 import { signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -13,6 +15,8 @@ export default function SignUpPage() {
   const [toast, setToast] = useState(null);
   const [page, setPage] = useState(1);
   const [isGoogle, setIsGoogle] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -77,11 +81,31 @@ export default function SignUpPage() {
     await auth.signup(cleanedForm).then((response) => {
       if (response.status === 201) {
         setToast({ type: "success", message: `Welcome, ${form.full_name || "user"}!` });
+        setTimeout(() =>{
+           window.location.assign('/login'); 
+        },1500);
+
       } else {
-        handleShowToast('error');
+        handleLogin({email: form.email, password: form.password});
       }
     });
   };
+
+  async function handleLogin(loginData) {
+    await auth.login(loginData).then((response) => {
+      if (response.status == 200) {
+        console.log(response.data);
+        localStorage.setItem('auth-token', response.data.token);
+        handleShowToast('success');
+         setTimeout(() =>{
+           window.location.assign('/'); 
+        },1500);          
+      } else {
+        console.log(response.data);
+        handleShowToast('error');
+      }
+    }); 
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-black px-4">
@@ -96,9 +120,26 @@ export default function SignUpPage() {
                 <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-4 py-2 rounded-lg border border-white/20 bg-white/5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30" placeholder="you@example.com" required />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-white mb-1">Password</label>
-                <input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="w-full px-4 py-2 rounded-lg border border-white/20 bg-white/5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30" placeholder="••••••••" required />
-              </div>
+                          <label className="block text-sm font-semibold text-white mb-1">Password</label>
+                          <div className="relative">
+                            <input
+                              type={showPassword ? "text" : "password"}
+                              value={form.password}
+                              onChange={(e) => setForm({ ...form, password: e.target.value })}
+                              className="w-full px-4 py-2 bg-transparent border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/40 transition pr-10"
+                              placeholder="••••••••"
+                            />
+                            <button
+                              type="button"
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none"
+                              onClick={() => setShowPassword((prev) => !prev)}
+                              tabIndex={-1}
+                              aria-label={showPassword ? 'Hide password' : 'Show password'}
+                            >
+                              {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                            </button>
+                          </div>
+                        </div>
             </>
           )}
 
@@ -109,12 +150,22 @@ export default function SignUpPage() {
                 <input type="text" value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} className="w-full px-4 py-2 rounded-lg border border-white/20 bg-white/5 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30" placeholder="John Doe" required />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-white mb-1">Date of Birth</label>
-                <input type="date" value={form.date_of_birth} onChange={(e) => setForm({ ...form, date_of_birth: e.target.value })} className="w-full px-4 py-2 rounded-lg border border-white/20 bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-white/30" required />
+                <label className="block text-sm font-semibold text-white mb-1">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  value={form.date_of_birth}
+                  onChange={(e) =>
+                    setForm({ ...form, date_of_birth: e.target.value })
+                  }
+                  className="w-full px-4 py-2 rounded-lg border border-white/20 bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-white/30 [color-scheme:dark]"
+                  required
+                />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-white mb-1">Gender</label>
-                <select value={form.gender} onChange={(e) => setForm({ ...form, gender: e.target.value })} className="w-full px-4 py-2 rounded-lg border border-white/20 bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-white/30" required>
+                <select value={form.gender} onChange={(e) => setForm({ ...form, gender: e.target.value })} className="w-full px-4 py-2 rounded-lg border border-white/20 bg-black text-white focus:outline-none focus:ring-2 focus:ring-white/30" required>
                   <option value="">Select Gender</option>
                   <option value="M">Male</option>
                   <option value="F">Female</option>
@@ -171,11 +222,11 @@ export default function SignUpPage() {
           </div>
         </form>
 
-        <div className="mt-6">
+        {page!=2 && (<div className="mt-6">
           <button onClick={handleGoogleSignUp} className="w-full py-2 px-4 flex items-center justify-center gap-2 border border-white text-white bg-white/5 backdrop-blur-sm rounded-lg hover:bg-white hover:text-black transition duration-300">
             <FcGoogle size={20} /> Sign up with Google
           </button>
-        </div>
+        </div>)}
 
         <p className="text-sm text-center text-white mt-4">
           Already have an account?{' '}

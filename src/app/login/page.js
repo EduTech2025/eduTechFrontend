@@ -9,11 +9,13 @@ import Toast from '@/utils/toast';
 import auth from '@/lib/auth_api';
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth as firebaseAuth, provider } from "@/lib/firebase";
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [toast, setToast] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const router=useRouter();
 
   const handleGoogleLogin = async (e) => {
     try {
@@ -33,6 +35,9 @@ export default function LoginPage() {
           console.log(response.data);
           localStorage.setItem('auth-token', response.data.token);
           handleShowToast('success');
+          setTimeout(() => {
+            window.location.assign('/'); 
+          }, 1500);          
         } else {
           console.log(response.data);
           handleShowToast('error');
@@ -45,7 +50,7 @@ export default function LoginPage() {
   };
 
   const handleShowToast = (type) => {
-    setToast({ type, message: type === 'success' ? 'Data saved successfully!' : 'Failed to save data!' });
+    setToast({ type, message: type === 'success' ? 'Data saved successfully!' : 'User Not Found!' });
   };
 
   const handleSubmit = async (e) => {
@@ -65,6 +70,9 @@ export default function LoginPage() {
         console.log(response.data);
         localStorage.setItem('auth-token', response.data.token);
         handleShowToast('success');
+        setTimeout(() => {
+            window.location.assign('/'); 
+          }, 1500);   
       } else {
         console.log(response.data);
         handleShowToast('error');

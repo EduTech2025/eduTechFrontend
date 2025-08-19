@@ -18,12 +18,14 @@ export const AuthProvider = ({ children }) => {
     
 
     try {
+      if(token!=null){
       const resp = await auth.get_user(token);
       setEmail(resp.data.email);
       setId(resp.data.id);
       setUUID(resp.data.uuid);
       setRole(resp.data?.is_superuser!=false?'admin':'user');
       setIsAuthenticated(true);
+    }
     } catch (error) {
       console.error("Failed to fetch user:", error);
       setIsAuthenticated(false);

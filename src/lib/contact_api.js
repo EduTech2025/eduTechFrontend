@@ -1,7 +1,7 @@
 import api from "./base_url";
 
 const endPoints = {
-  email:"api/contact/",
+  email:"contacts/email/",
   
 }
 
