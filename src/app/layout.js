@@ -5,8 +5,9 @@ import GrokStarBackground from '@/utils/ParticleBackground';
 import ClickSpark from "@/utils/cursor_tap";
 
 export const metadata = {
-  title: 'De Silent Order',
-  description: 'A simple site with navbar layout',
+  title: 'De Silent Order | Web, App, Marketing & EdTech Platform',
+  description: "De Silent Order is a service-based & edutech platform offering Web Development, App Development, SEO, Marketing & Courses for businesses, students & professionals.",
+  keywords: 'Web Development, App Development, SEO, Marketing, Courses, EdTech, Service-based platform, Business solutions, Student resources, Professional development',
   icons: {
     icon: [
       { url: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
