@@ -162,7 +162,7 @@ const ServiceSection = () => {
         Empowering you with tailored tech solutions built for the future!
       </SubHeading>
 
-      <div className="overflow-x-auto my-4 mx-1 whitespace-nowrap no-scrollbar">
+      <div className="overflow-x-auto my-4 pb-8 mx-1 whitespace-nowrap no-scrollbar">
         <div className="inline-flex gap-2">
           {services.map((service) => (
             <TabButton
@@ -186,18 +186,23 @@ const ServiceSection = () => {
           <Button onClick={() => handleViewMore(currentService.id)}>View More</Button>
         </Card>
       )} */}
-
-  {currentService && (
-  <Card className="overflow-hidden p-0 m-0 relative w-full" style={{ aspectRatio: '18/10' }}>
-    <iframe
-      className="absolute top-0 left-0 w-full h-full"
-      src={`https://www.youtube.com/embed/zQGQLEE1nQs?autoplay=1&mute=1&loop=1&playlist=${currentService.link}&controls=0&modestbranding=1&showinfo=0&rel=0`}
-      title="YouTube video"
-      frameBorder="0"
-      allow="autoplay; encrypted-media"
-    />
-  </Card>
+{currentService && (
+  <div className="w-full">
+    <Card
+      className="overflow-hidden p-0 m-0 relative shadow-xl rounded-2xl w-full"
+      style={{ height: "60vh" }} // full width, 60% of screen height
+    >
+      <iframe
+        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+        src={`https://www.youtube.com/embed/H75H1cbl_94?autoplay=1&mute=1&loop=1&playlist=H75H1cbl_94&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1`}
+        title="YouTube video"
+        frameBorder="0"
+        allow="autoplay; encrypted-media"
+      />
+    </Card>
+  </div>
 )}
+
 
 
 
