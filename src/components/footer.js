@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Facebook, Twitter, Linkedin, Mail } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Mail, Instagram } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -45,10 +45,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-white">Resources</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link href="/blog" className="hover:text-purple-400 transition">Blog</Link></li>
+             <li><Link href="#" onClick={(e) => e.preventDefault()} className="text-white-400 cursor-not-allowed pointer-events-none" > Blog (Upcoming)</Link></li>
               <li><Link href="/careers" className="hover:text-purple-400 transition">Careers</Link></li>
-              <li><Link href="/privacy" className="hover:text-purple-400 transition">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-purple-400 transition">Terms of Service</Link></li>
+              <li><Link href="#" onClick={(e) => e.preventDefault()} className="text-white-400 cursor-not-allowed pointer-events-none" >Privacy Policy (Upcoming)</Link></li>
+              <li><Link href="#" onClick={(e) => e.preventDefault()} className="text-white-400 cursor-not-allowed pointer-events-none" >Terms of Service (Upcoming)</Link></li>
             </ul>
           </div>
 
@@ -58,10 +58,10 @@ export default function Footer() {
             <p className="text-sm text-gray-400 mb-4">Follow us for updates and insights.</p>
             <div className="flex items-center space-x-4">
               {[
-                { href: 'https://facebook.com', icon: <Facebook size={18} /> },
-                { href: 'https://twitter.com', icon: <Twitter size={18} /> },
-                { href: 'https://linkedin.com', icon: <Linkedin size={18} /> },
-                { href: 'mailto:support@edutech.com', icon: <Mail size={18} /> }
+                { href: 'https://www.facebook.com/profile.php?id=61576094074088', icon: <Facebook size={18} /> },
+                { href: 'https://www.instagram.com/de_silent_order', icon: <Instagram size={18} /> },
+                { href: 'https://www.linkedin.com/company/de-silent-order-ed', icon: <Linkedin size={18} /> },
+                { href: 'mailto:support@desilentorder.in', icon: <Mail size={18} /> }
               ].map(({ href, icon }, i) => (
                   <a
                       key={i}
