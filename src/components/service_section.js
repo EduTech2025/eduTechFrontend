@@ -87,11 +87,11 @@ const TabButton = styled.button.withConfig({
 
 const Card = styled.div`
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 1rem;
-  padding: 2rem 1.5rem;
-  max-width: 600px;
-  margin: 0 auto;
+  
+  max-width: 70%;
+  height: 70vh;
+  margin: auto;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 16px rgba(168, 85, 247, 0.08);
   display: flex;
@@ -99,12 +99,11 @@ const Card = styled.div`
   align-items: center;
   transition: transform 0.3s ease;
 
-  &:hover {
-    transform: translateY(-6px);
-  }
-
   @media (max-width: 600px) {
     padding: 1.5rem 1rem;
+    
+  max-width: 100%;
+  height: 25vh;
   }
 `;
 
@@ -190,11 +189,10 @@ const ServiceSection = () => {
   <div className="w-full">
     <Card
       className="overflow-hidden p-0 m-0 relative shadow-xl rounded-2xl w-full"
-      style={{ height: "60vh" }} // full width, 60% of screen height
     >
       <iframe
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        src={`https://www.youtube.com/embed/H75H1cbl_94?autoplay=1&mute=1&loop=1&playlist=H75H1cbl_94&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1`}
+         src="https://www.youtube.com/embed/keMNKCxrSxg?autoplay=1&mute=1&loop=1&playlist=keMNKCxrSxg&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&vq=hd1080"
         title="YouTube video"
         frameBorder="0"
         allow="autoplay; encrypted-media"

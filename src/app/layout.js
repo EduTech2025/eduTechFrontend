@@ -44,7 +44,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ fontFamily: 'Anta-Regular',background: 'black' }}>
+      
+      <body style={{ fontFamily: 'Anta-Regular',background: 'black' }} className='overflow-x-hidden no-scrollbar'>
            <ClickSpark
               sparkColor='#fff'
               sparkSize={10}
@@ -57,6 +58,20 @@ export default function RootLayout({ children }) {
               </AuthProvider>
 
           </ClickSpark>
+         
+         {/* Google Analytics Scripts */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-E5NDLP1LHL"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-script" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-E5NDLP1LHL');
+          `}
+        </Script>
         </body>
     </html>
   );

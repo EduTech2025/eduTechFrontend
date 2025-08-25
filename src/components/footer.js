@@ -6,8 +6,35 @@ import { Facebook, Twitter, Linkedin, Mail, Instagram } from 'lucide-react';
 export default function Footer() {
   return (
       <footer
-          className="w-full text-white h-[80%] mt-6 relative z-10 backdrop-blur-md bg-no-repeat bg-cover"
+          className="w-full text-white h-[80%] mt-6 overflow-x-hidden no-scrollbar relative z-10 backdrop-blur-md bg-no-repeat bg-cover"
       >
+         <div className="md:flex hidden overflow-x-auto whitespace-nowrap bg-cover bg-center px-2 gap-2 no-scrollbar">
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/image_footer.png" className="w-[5%] h-auto flex-shrink-0" />
+            <img src="/assets/footer_name_image.png" className="w-[5%] h-auto flex-shrink-0" />
+          </div>
+
         <div className="md:hidden flex overflow-x-auto whitespace-nowrap bg-cover bg-center px-2 gap-2 no-scrollbar">
           <img src="/assets/image_footer.png" className="w-[35%] h-auto flex-shrink-0" />
           <img src="/assets/footer_name_image.png" className="w-[35%] h-auto flex-shrink-0" />
@@ -86,7 +113,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="py-4 border-white/10 py-4 text-center text-xs text-gray-500">
-          © {new Date().getFullYear()} Silent Order. All rights reserved.
+          © {new Date().getFullYear()} De Silent Order. All rights reserved.
         </div>
       </footer>
   );

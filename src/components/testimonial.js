@@ -71,7 +71,7 @@ export function TestimonialScroller() {
           {[...testimonials, ...testimonials].map((t, idx) => (
               <div
                   key={idx}
-                  className="w-[320px] shrink-0 p-6 rounded-2xl bg-purple-900/20 border border-purple-400/20 backdrop-blur-md text-white shadow-[0_0_25px_rgba(168,85,247,0.2)] hover:shadow-[0_0_35px_rgba(168,85,247,0.4)] hover:scale-[1.03] transition-all duration-300"
+                  className="w-[320px] shrink-0 m-4 p-6 rounded-2xl bg-purple-900/20 border border-purple-400/20 backdrop-blur-md text-white shadow-[0_0_25px_rgba(168,85,247,0.2)] hover:shadow-[0_0_35px_rgba(168,85,247,0.4)] transition-all duration-300"
               >
                 <div className="flex mb-3">
                   {Array.from({ length: t.rating }).map((_, i) => (
@@ -121,7 +121,7 @@ export function BrandLeadScroller() {
   }, [paused]);
 
   return (
-      <section className="py-16 overflow-hidden relative">
+      <section className="py-10 overflow-hidden relative">
         <div className="max-w-full mx-auto px-10">
           <h2 className="text-white text-2xl md:text-4xl font-semibold text-center mb-10">
             Trusted by Leading Brands
@@ -129,15 +129,13 @@ export function BrandLeadScroller() {
 
           <div
               ref={containerRef}
-              onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
               className="flex gap-10 px-8 overflow-x-auto no-scrollbar"
               style={{ scrollBehavior: 'auto' }}
           >
             {[...logos, ...logos].map((logo, i) => (
                 <div
                     key={i}
-                    className="flex-shrink-0 w-40 h-20 flex items-center justify-center bg-white/10 border border-white/20 rounded-xl shadow-lg backdrop-blur-md transition-transform hover:scale-105 duration-300"
+                    className="flex-shrink-0 w-40 h-20 flex items-center justify-center bg-white/10 border border-white/20 rounded-xl shadow-lg backdrop-blur-md transition-transform duration-300"
                 >
                   <img
                       src={logo}

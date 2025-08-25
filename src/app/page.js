@@ -69,8 +69,10 @@ export default function Home() {
     },
   });
 
+  
+
   return (
-    <main className="text-gray-800 overflow-x-hidden">
+    <main className="text-gray-800">
       {/* Hero Section */}
       <section className="min-h-screen bg-black text-white relative overflow-hidden px-6 md:px-12 lg:px-20 md:py-20 flex flex-col-reverse md:flex-row items-center md:justify-between justify-end md:gap-10 gap-20">
         {/* Left Content */}

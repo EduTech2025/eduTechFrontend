@@ -41,11 +41,7 @@ export default function Navbar({ animate }) {
         { name: 'Merge PDFs', path: '/resources/merge-pdfs' },
         { name: 'Split PDF', path: '/resources/split-pdf' },
         { name: 'Compress PDF', path: '/resources/compress-pdf' },
-        { name: 'Add Watermark', path: '/resources/add-watermark' },
-        { name: 'Rotate PDF', path: '/resources/rotate-pdf' },
-        { name: 'Unlock PDF', path: '/resources/unlock-pdf' },
-        { name: 'Protect PDF', path: '/resources/protect-pdf' },
-      ],
+       ],
     },
     
     {
