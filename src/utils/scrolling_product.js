@@ -47,12 +47,12 @@ const productCategories = [
         icon: '/assets/home/templates.png',
        badge: "onDemand",
     },
-    {
-        title: 'Finance Tracker',
-        link: '/products/website-ecommerce',
-        icon: '/assets/home/finance.png',
-        badge: "comingSoon",
-    },
+    // {
+    //     title: 'Finance Tracker',
+    //     link: '/products/website-ecommerce',
+    //     icon: '/assets/home/finance.png',
+    //     badge: "comingSoon",
+    // },
 ];
 
 export default function ProductCategoriesCarousel() {
