@@ -60,7 +60,7 @@ export default function RootLayout({ children }) {
           </ClickSpark>
          
          {/* Google Analytics Scripts */}
-        <Script
+        {/* <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-E5NDLP1LHL"
           strategy="afterInteractive"
         />
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
             gtag('config', 'G-E5NDLP1LHL');
           `}
-        </Script>
+        </Script> */}
         </body>
     </html>
   );

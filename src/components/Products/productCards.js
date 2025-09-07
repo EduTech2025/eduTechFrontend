@@ -12,6 +12,16 @@ const products = [
     icon: "/assets/home/inter-talk.png",
     category: 'image',
   },
+  {
+    name: 'Agentic Query Chatbot',
+    icon: "/assets/home/agentic_query_bot.png",
+    category: 'image',
+  },
+  {
+    name: 'Travel Planner',
+    icon: "/assets/home/travel_planner.png",
+    category: 'image',
+  },
 ];
 
 export default function ProductCards({ openModalWithCategory }) {
@@ -21,18 +31,31 @@ export default function ProductCards({ openModalWithCategory }) {
         <div
           key={product.name}
           onClick={() => openModalWithCategory(product.category)}
-          className="cursor-pointer bg-[#1a1a1a] rounded-2xl border border-white/10 hover:shadow-purple-500/30 transition-all p-4 group"
+          className="cursor-pointer relative rounded-2xl border border-white/10 
+                    overflow-hidden bg-[#1a1a1a] 
+                    hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] 
+                    transition-all group"
         >
-          <div className="relative w-full h-auto mb-4 flex items-center justify-center rounded-md overflow-hidden shadow-inner">
-            <div className="transition-transform group-hover:scale-110">
-              <img src={product.icon} alt="" />
-            </div>
+       {/* Image centered and contained inside card */}
+        <div className="w-full h-48 sm:h-56 md:h-60 lg:h-64 flex items-center justify-center">
+          <img
+            src={product.icon}
+            alt={product.name}
+            className="max-w-[80%] max-h-[80%] object-contain"
+          />
+        </div>
+
+
+          {/* Text overlay at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 bg-black/100 py-3 text-center">
+            <span className="block text-sm sm:text-base font-medium text-white 
+                            group-hover:text-purple-300 transition">
+              {product.name}
+            </span>
           </div>
-          <span className="text-center block text-sm font-medium text-white group-hover:text-purple-300 transition">
-            {product.name}
-          </span>
         </div>
       ))}
     </main>
+
   );
 }

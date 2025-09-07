@@ -9,7 +9,7 @@ const productCategories = [
         title: 'PDF Editor',
         link: '/products/?pdf=open',  
         icon: '/assets/home/pdf.png',
-       badge: "onDemand",
+       badge: "available",
     },
     {
         title: 'Interview Simulator',
@@ -20,7 +20,13 @@ const productCategories = [
     {
         title: 'Travel Planner',
         link: '/products/?travel',
-        icon: '/assets/home/inter-talk.png',
+        icon: '/assets/home/travel_planner.png',
+       badge: "comingSoon",
+    },
+     {
+        title: 'Agentic Query Bot',
+        link: '/products/?travel',
+        icon: '/assets/home/agentic_query_bot.png',
        badge: "comingSoon",
     },
     {

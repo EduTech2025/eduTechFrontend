@@ -85,9 +85,9 @@ export default function Home() {
             <br />
             Let’s build the future together.
           </p>
-          <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold px-6 py-3 rounded-full hover:from-pink-400 hover:to-purple-500 transition duration-300">
+          <Link href={"/about"} className="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold px-6 py-3 rounded-full hover:from-pink-400 hover:to-purple-500 transition duration-300">
             Get Started
-          </button>
+          </Link>
         </div>
 
         {/* Right Illustration */}
